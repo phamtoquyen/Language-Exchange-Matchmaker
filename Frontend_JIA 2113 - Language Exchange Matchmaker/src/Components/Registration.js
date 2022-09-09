@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import React from "react";
 import './Registration.css'; 
+
 import Button from 'react-bootstrap/Button';
 
 
@@ -70,10 +71,9 @@ function Registration() {
   };
  
   return (
-    <div className="form">
-      <div>
+    <div className="screen-Background">
+      <div className="screen-Container">
         <h1>User Registration</h1>
-      </div>
  
       {/* Calling to the methods */}
       <div className="messages">
@@ -103,18 +103,13 @@ function Registration() {
           value={password} type="password" />
         </div>
         </div>
-        <Button variant="success" onClick={handleSubmit} className="btn">
+        <Button className="btn-Screen"  onClick={handleSubmit}>
           Submit
         </Button>
       </form>
+      </div>
     </div>
   );
-    /*return (
-        <div>
-            <h1>Language Exchange MatchMaker</h1>
-            
-            <button>submit</button>
-        </div>
-    );*/
+    
 }
 export default Registration;
