@@ -8,9 +8,7 @@ Backend Structure with MVC Model:
   + viewEngine.js file: selected EJS as the project view engine, and set "Views" as a folder that stores all .ejs files.
 - Controller contains code logic to connect and get data from database, then render to Views.
   + homeController.js
-  + APIController.js 
-- Models:
-  + index.js file: 
+  + APIController.js  
 - Public contains accessible files suchs as images, audio files and css files
 - Routes folder contains all the routes of the web app and app API:
     
