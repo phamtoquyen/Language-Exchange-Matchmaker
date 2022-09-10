@@ -18,6 +18,8 @@ Backend Structure with MVC Model:
   + api.js file contains all api routes (GET, POST, PUT, DELETE)
   + web.js file contains all routes of the application.
 - Views (The folder was created for the purpose of showing how data would be manipulated on the backend server, and will be removed while the project moving onward) :
+  
+  EJS documentation: https://ejs.co/
   + index.ejs: the homepage which contains user list, modify functions such as view detail, edit and delete a specific user.
   + update.ejs: a specific user can update their information such as first name, last name, email and address. After they change their infomation, the updated one will be saved to database. 
   + uploadFile.ejs: a user can update their profile picture. 
