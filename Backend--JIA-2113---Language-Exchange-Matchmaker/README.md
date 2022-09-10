@@ -3,7 +3,7 @@
 Backend Structure with MVC Model:
 - Configs contains all configurations of the project server-side
   
-  Connect to mysql2 and mysql2 using prepare statement documentation: https://www.npmjs.com/package/mysql2
+  Connect to mysql2, mysql2 using prepare statement and using promis wrapper documentation: https://www.npmjs.com/package/mysql2
   + connectDB.js file: imported mysql2 and created connection to database
   + viewEngine.js file: selected EJS as the project view engine, and set "Views" as a folder that stores all .ejs files.
 - Controller contains code logic to connect and get data from database, then render to Views.
