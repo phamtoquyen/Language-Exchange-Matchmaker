@@ -1,24 +1,21 @@
 import logo from './logo.svg';
 import './App.scss';
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import Home from "../Components/Home";
+import Registration from "../Components/Registration";
+import Login from '../Components/Login';
 
 function App() {
   return (
-//   class App is inside the div root
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello World with React
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+       <Routes>
+          <Route path ="/" element ={<Home />}/>
+          <Route path ="/Login" element ={<Login/>}/>
+          <Route path ="/Register" element ={<Registration />}/>
+          </Routes>
+       </Router>
+    
     </div>
   );
 }
