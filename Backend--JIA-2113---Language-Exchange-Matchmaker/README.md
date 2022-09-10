@@ -11,7 +11,8 @@ Backend Structure with MVC Model:
   + index.js file: 
 - Public contains accessible files suchs as images, audio files and css files
 - Routes folder contains all the routes of the web app and app API:
-Express basic routing documentation: https://expressjs.com/en/4x/api.html#router
+    
+    Express basic routing documentation: https://expressjs.com/en/4x/api.html#router
   + api.js file contains all api routes (GET, POST, PUT, DELETE)
   + web.js file contains all routes of the application.
 - Views (The folder was created for the purpose of showing how data would be manipulated on the backend server, and will be removed while the project moving onward) :
