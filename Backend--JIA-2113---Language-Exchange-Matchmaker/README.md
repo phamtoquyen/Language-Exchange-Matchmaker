@@ -13,6 +13,7 @@ Backend Structure with MVC Model:
 - Routes folder contains all the routes of the web app and app API:
   + api.js file contains all api routes (GET, POST, PUT, DELETE)
   + web.js file contains all routes of the application.
+  Express basic routing documentation: https://expressjs.com/en/4x/api.html#router
 - Views (The folder was created for the purpose of showing how data would be manipulated on the backend server, and will be removed while the project moving onward) :
   + index.ejs: the homepage which contains user list, modify functions such as view detail, edit and delete a specific user.
   + update.ejs: a specific user can update their information such as first name, last name, email and address. After they change their infomation, the updated one will be saved to database. 
