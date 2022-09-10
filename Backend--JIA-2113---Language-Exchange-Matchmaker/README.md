@@ -23,3 +23,10 @@ Backend Structure with MVC Model:
   + index.ejs: the homepage which contains user list, modify functions such as view detail, edit and delete a specific user.
   + update.ejs: a specific user can update their information such as first name, last name, email and address. After they change their infomation, the updated one will be saved to database. 
   + uploadFile.ejs: a user can update their profile picture. 
+  
+  
+  Multer and Express documentation:
+      
+      https://expressjs.com/en/resources/middleware/multer.html
+       
+      https://stackabuse.com/handling-file-uploads-in-node-js-with-expres-and-multer/
