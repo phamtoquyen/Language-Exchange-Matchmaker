@@ -3,4 +3,4 @@
 # Release Notes
 ## Version 0.1.0
 ### New Features
-*UI for Home, Login & Registration Page
+* UI for Home, Login & Registration Page
