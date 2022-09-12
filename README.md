@@ -8,4 +8,6 @@
 
 ### Bug Fixes
 * No schema was provided with the project, now there is a schema that can be upladed and used by developers
+
 ### Known Issues
+* Database is not on a server hence there are currently multiple copies.
