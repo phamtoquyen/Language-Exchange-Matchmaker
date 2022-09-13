@@ -11,3 +11,4 @@
 
 ### Known Issues
 * Database is not on a server hence there are currently multiple copies.
+* Multiple People can be registered with the same people.
