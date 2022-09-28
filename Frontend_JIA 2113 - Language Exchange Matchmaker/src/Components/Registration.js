@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import React from "react";
-import './Registration.css'; 
+import './Registration.css';
+import { useNavigate } from "react-router-dom";
 
 import Button from 'react-bootstrap/Button';
 
 
 function Registration() {
     // States for registration
+  const navigate = useNavigate();
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -41,6 +44,8 @@ function Registration() {
     } else {
       setSubmitted(true);
       setError(false);
+      navigate("/CreateProfile");
+      
     }
   };
  
@@ -65,7 +70,7 @@ function Registration() {
         style={{
           display: error ? '' : 'none',
         }}>
-        <h1>Please enter all the fields</h1>
+        <h1>enter all the fields</h1>
       </div>
     );
   };
@@ -87,24 +92,30 @@ function Registration() {
 
         <div className='form-group'>
         <label className="label">Name</label>
-        <input onChange={handleName} className="input"
+        <input 
+        placeholder ="Enter Name"
+        onChange={handleName} className="input"
           value={name} type="text" />
         </div>
 
         <div className='form-group'>
         <label className="label">Email</label>
-        <input onChange={handleEmail} className="input"
+        <input
+        placeholder ="Enter Email.." 
+        onChange={handleEmail} className="input"
           value={email} type="email" />
         </div>
 
         <div className='form-group'>
         <label className="label">Password</label>
-        <input onChange={handlePassword} className="input"
+        <input
+        placeholder ="Enter Password.." 
+        onChange={handlePassword} className="input"
           value={password} type="password" />
         </div>
         </div>
         <Button className="btn-Screen"  onClick={handleSubmit}>
-          Submit
+          Create Profile
         </Button>
       </form>
       </div>
