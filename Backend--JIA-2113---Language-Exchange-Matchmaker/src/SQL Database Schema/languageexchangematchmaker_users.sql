@@ -18,13 +18,17 @@
 --
 -- Table structure for table `users`
 --
+drop database if exists languageexchangematchmaker;
+create database if not exists languageexchangematchmaker;
+use languageexchangematchmaker;
+
 
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `firstname` varchar(45) DEFAULT NULL,
+  `firstName` varchar(45) DEFAULT NULL,
   `lastName` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `address` varchar(45) DEFAULT NULL,
