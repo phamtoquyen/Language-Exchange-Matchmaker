@@ -12,6 +12,7 @@ let initWebRoute = (app) => {
 
     // API
     router.post('/api/login', userController.handleLogin)
+    router.post('/Register', userController.handleRegister)
     return app.use('/', router);
 }
 
