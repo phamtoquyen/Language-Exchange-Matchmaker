@@ -4,4 +4,11 @@ const handleLoginApi = (userEmail, userPassword) => {
     return axios.post('/api/login', {email: userEmail, password: userPassword}) ;
 }
 
-export {handleLoginApi}
+const handleRegisterApi= (firstName, lastName, Email, userPassword) => {
+    //console.log("fj");
+    return axios.post('/Register', {firstName: firstName, lastName: lastName, email: Email, password: userPassword}) ;
+}
+
+
+
+export {handleLoginApi, handleRegisterApi}

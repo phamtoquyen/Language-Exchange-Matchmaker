@@ -45,6 +45,50 @@ let handleUserLogin = (email, password) => {
     })
 }
 
+let handleUserRegister = (firstName, lastName, email, password) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            // Return obj to Controller and the Controller will response to the user
+            let userData = {};
+            let isExist = await checkUserEmail(email);
+            if (isExist){
+                //use already exists
+                //Then, compare password
+                //1. Check again if later there someone delete that user in the database after we check
+                userData.errCode = 1;
+                userData.errMessage = 'User already exists';
+            }
+            else {
+                /*userDate object {
+                errCode: 1
+                errMessage: "username not exist"
+                }
+                */
+                const salt = bcrypt.genSaltSync(10);
+                const hash = bcrypt.hashSync(password, salt);
+                let user = await db.User.create({
+                    email: email,
+                    password: hash,
+                    phonenumber: '',
+                    firstName: firstName,
+                    lastName: lastName,
+                    address: '',
+                    gender: 0, // 0 - F and 1 - M
+                    createdAt: new Date(),
+                    updatedAt: new Date()
+                });
+                console.log(user.lastName);
+                userData.errCode = 0;
+                userData.errMessage = 'Successfully Registered';
+                }
+            resolve(userData);
+    
+        }catch(e){
+            reject(e)
+        }
+    })
+}
+
 
 let checkUserEmail = (userEmail) => {
     return new Promise (async (resolve, reject) => {
@@ -66,5 +110,5 @@ let checkUserEmail = (userEmail) => {
 }
 
 module.exports = {
-handleUserLogin, checkUserEmail
+handleUserLogin, checkUserEmail, handleUserRegister
 }
