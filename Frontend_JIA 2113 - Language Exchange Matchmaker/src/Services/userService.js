@@ -5,7 +5,6 @@ const handleLoginApi = (userEmail, userPassword) => {
 }
 
 const handleRegisterApi= (firstName, lastName, Email, userPassword) => {
-    //console.log("fj");
     return axios.post('/Register', {firstName: firstName, lastName: lastName, email: Email, password: userPassword}) ;
 }
 

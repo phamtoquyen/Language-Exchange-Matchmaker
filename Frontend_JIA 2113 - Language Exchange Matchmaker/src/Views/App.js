@@ -1,10 +1,12 @@
 import logo from './logo.svg';
+//import React from "react";
 import './App.scss';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Home from "../Components/Home";
 import Registration from "../Components/Registration";
 import Login from '../Components/Login';
 import React, { Component }  from 'react';
+import CreateProfile from '../Components/CreateProfile';
 
 function App() {
   return (
@@ -14,8 +16,9 @@ function App() {
           <Route path ="/" element ={<Home />}/>
           <Route path ="/Login" element ={<Login/>}/>
           <Route path ="/Register" element ={<Registration />}/>
-          </Routes>
-       </Router>
+          <Route path ="/CreateProfile" element ={<CreateProfile />}/>
+       </Routes>
+      </Router>
     
     </div>
   );

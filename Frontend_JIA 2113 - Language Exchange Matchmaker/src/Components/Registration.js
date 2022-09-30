@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import React from "react";
 import './Registration.css'; 
+import { useNavigate } from "react-router-dom";
 
 import Button from 'react-bootstrap/Button';
 import { handleRegisterApi } from '../Services/userService';
@@ -8,8 +9,12 @@ import { handleRegisterApi } from '../Services/userService';
 
 function Registration() {
     // States for registration
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const navigate = useNavigate();
+
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errMsg ,setErrMsg] = useState('');
@@ -48,6 +53,8 @@ function Registration() {
       setError(true);
     } else {
       setError(false);
+      navigate("/CreateProfile");
+      
     }
     setErrMsg("");
     try{
@@ -95,7 +102,7 @@ function Registration() {
         style={{
           display: error ? '' : 'none',
         }}>
-        <h1>Please enter all the fields</h1>
+        <h1>enter all the fields</h1>
       </div>
     );
   };
@@ -116,6 +123,7 @@ function Registration() {
         {/* Labels and inputs for form data */}
 
         <div className='form-group'>
+
         <label className="label">First Name</label>
         <input onChange={handleFirstName} className="input"
           value={firstName} type="text" />
@@ -129,18 +137,22 @@ function Registration() {
 
         <div className='form-group'>
         <label className="label">Email</label>
-        <input onChange={handleEmail} className="input"
+        <input
+        placeholder ="Enter Email.." 
+        onChange={handleEmail} className="input"
           value={email} type="email" />
         </div>
 
         <div className='form-group'>
         <label className="label">Password</label>
-        <input onChange={handlePassword} className="input"
+        <input
+        placeholder ="Enter Password.." 
+        onChange={handlePassword} className="input"
           value={password} type="password" />
         </div>
-        
+
         <Button className="btn-Screen"  onClick={handleSubmit}>
-          Submit
+          Create Profile
         </Button>
         </div>
       </form>
