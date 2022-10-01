@@ -12,3 +12,16 @@
 ### Known Issues
 * Database is not on a server hence there are currently multiple copies.
 * Multiple People can be registered with the same people.
+
+## Version 0.1.1
+### New Features
+* Complete Login and Registration feature.
+* UI for createProfile Page
+* Updated DataBase Schema
+
+### Bug Fixes
+* Frontend and backend are connected
+
+### Known Issues
+* Database is not on a server hence there are currently multiple copies.
+* Some UI design needs to be improved.
