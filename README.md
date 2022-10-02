@@ -13,7 +13,7 @@
 * Database is not on a server hence there are currently multiple copies.
 * Multiple People can be registered with the same people.
 
-## Version 0.1.1
+## Version 0.2.0
 ### New Features
 * Complete Login and Registration feature.
 * UI for createProfile Page
