@@ -16,6 +16,7 @@
 ## Version 0.2.0
 ### New Features
 * Complete Login and Registration feature.
+* Implemented security authentication registration & Login.
 * UI for createProfile Page
 * Updated DataBase Schema
 
