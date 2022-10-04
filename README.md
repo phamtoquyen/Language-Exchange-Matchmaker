@@ -26,3 +26,4 @@
 ### Known Issues
 * Database is not on a server hence there are currently multiple copies.
 * Some UI design needs to be improved.
+* createProfile Page is not connected to the Backend
