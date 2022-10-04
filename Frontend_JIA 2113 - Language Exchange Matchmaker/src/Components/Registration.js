@@ -1,26 +1,36 @@
 import { useState } from 'react';
 import React from "react";
-import './Registration.css';
+import './Registration.css'; 
 import { useNavigate } from "react-router-dom";
 
 import Button from 'react-bootstrap/Button';
+import { handleRegisterApi } from '../Services/userService';
 
 
 function Registration() {
     // States for registration
+
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const navigate = useNavigate();
 
-  const [name, setName] = useState('');
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errMsg ,setErrMsg] = useState('');
+
  
   // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
  
   // Handling the name change
-  const handleName = (e) => {
-    setName(e.target.value);
+  const handleFirstName = (e) => {
+    setFirstName(e.target.value);
+    setSubmitted(false);
+  };
+  const handleLastName = (e) => {
+    setLastName(e.target.value);
     setSubmitted(false);
   };
  
@@ -37,16 +47,38 @@ function Registration() {
   };
  
   // Handling the form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    if (name === '' || email === '' || password === '') {
+    if (firstName === '' || lastName === '' || email === '' || password === '') {
       setError(true);
     } else {
-      setSubmitted(true);
       setError(false);
       navigate("/CreateProfile");
       
     }
+    setErrMsg("");
+    try{
+      
+      let data = await handleRegisterApi(firstName,lastName,email, password);
+      console.log("fj");
+      if (data && data.errCode !== 0){
+          setSubmitted(true);
+          setErrMsg(data.message);
+      }
+      if (data && data.errCode === 0){
+      // todo when login successfull!
+      setSubmitted(true);
+      console.log("login successull!")
+      }
+  }catch(error){
+      if (error.response){
+          if (error.response.data){
+                  setErrMsg(error.response.data.message)
+                  console.log(errMsg)
+
+          }
+      }
+  }
   };
  
   // Showing success message
@@ -57,7 +89,7 @@ function Registration() {
         style={{
           display: submitted ? '' : 'none',
         }}>
-        <h1>User {name} successfully registered!!</h1>
+        <h1>{errMsg}</h1>
       </div>
     );
   };
@@ -91,11 +123,16 @@ function Registration() {
         {/* Labels and inputs for form data */}
 
         <div className='form-group'>
-        <label className="label">Name</label>
-        <input 
-        placeholder ="Enter Name"
-        onChange={handleName} className="input"
-          value={name} type="text" />
+
+        <label className="label">First Name</label>
+        <input onChange={handleFirstName} className="input"
+          value={firstName} type="text" />
+        </div>
+
+        <div className='form-group'>
+        <label className="label">Last Name</label>
+        <input onChange={handleLastName} className="input"
+          value={lastName} type="text" />
         </div>
 
         <div className='form-group'>
@@ -113,10 +150,11 @@ function Registration() {
         onChange={handlePassword} className="input"
           value={password} type="password" />
         </div>
-        </div>
+
         <Button className="btn-Screen"  onClick={handleSubmit}>
           Create Profile
         </Button>
+        </div>
       </form>
       </div>
     </div>

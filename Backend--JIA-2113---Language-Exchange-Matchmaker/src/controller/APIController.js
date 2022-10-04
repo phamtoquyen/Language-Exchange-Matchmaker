@@ -1,6 +1,6 @@
-import pool from '../configs/connectDB';
-let getAllUsers = async (req, res) => {
-    
+import pool from '../config/connectDB';
+
+let getAllUsers = async (req, res) => { //GET function
     const [rows, fields] = await pool.execute(`SELECT * FROM users`);
     return res.status(200).json({
         message: 'ok',
@@ -8,38 +8,36 @@ let getAllUsers = async (req, res) => {
     })
 }
 
-let createNewUser = async (req, res) => { 
-    let { firstName, lastName, Email, Address } = req.body;
-    if (!firstName || !lastName || !Email || !Address) { 
+let createNewUser = async (req, res) => { //POST function
+    let { firstName, lastName, email, address } = req.body;
+    if (!firstName || !lastName || !email || !address) {
         return res.status(200).json({
             message: 'missing @params'
         })
     }
-    await pool.execute('insert into Users(firstName, lastName, Email, Address) values(?, ?, ?, ?)', [firstName, lastName, Email, Address]);
+    await pool.execute('insert into users(firstName, lastName, email, address) values(?, ?, ?, ?)', [firstName, lastName, email, address]);
     return res.status(200).json({
         message: 'ok'
     })
 }
 
-
-
-let updateUser = async (req, res) => { 
-    let { firstName, lastName, Email, Address, id } = req.body;
-    if (!firstName || !lastName || !Email || !Address || !id) { 
+let updateUser = async (req, res) => { // PUT function
+    let { firstName, lastName, email, address, id } = req.body;
+    if (!firstName || !lastName || !email || !address || !id) {
         return res.status(200).json({
             message: 'missing @params'
         })
     }
 
-    await pool.execute('update Users set firstName = ?, lastName= ?, Email = ?, Address= ? WHERE id = ?',
-        [firstName, lastName, Email, Address, id]);
+    await pool.execute('update users set firstName = ?, lastName= ?, email = ?, address= ? WHERE id = ?',
+        [firstName, lastName, email, address, id]);
     return res.status(200).json({
         message: 'ok'
     })
     
 }
 
-let deleteUser = async (req, res) => { 
+let deleteUser = async (req, res) => { // DELETE function
      let userId = req.params.id;
      if (!userId) { 
         return res.status(200).json({
@@ -47,8 +45,7 @@ let deleteUser = async (req, res) => {
         })
     }
 
-    await pool.execute('delete from Users where id = ?', [userId])
-
+    await pool.execute('delete from users where id = ?', [userId])
       return res.status(200).json({
         message: 'ok'
     })
