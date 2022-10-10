@@ -4,14 +4,13 @@ import bcrypt from 'bcryptjs';
 let handleUserLogin = (email, password) => {
     return new Promise(async (resolve, reject) => {
         try{
-            // Return obj to Controller and the Controller will response to the user
             let userData = {};
             let isExist = await checkUserEmail(email);
             if (isExist){
                 //use already exists
                 //Then, compare password
                 //1. Check again if later there someone delete that user in the database after we check
-                let user = await db.User.findOne({
+                let user = await db.UserAccount.findOne({
                     where: {email: email}
                 });
                 if (user){
@@ -66,7 +65,7 @@ let handleUserRegister = (firstName, lastName, email, password) => {
                 */
                 const salt = bcrypt.genSaltSync(10);
                 const hash = bcrypt.hashSync(password, salt);
-                let user = await db.User.create({
+                let user = await db.UserAccount.create({
                     email: email,
                     password: hash,
                     phonenumber: '',
@@ -94,7 +93,7 @@ let checkUserEmail = (userEmail) => {
     return new Promise (async (resolve, reject) => {
         //findOne() --> return undefine if no user found
         try{
-            let user = await db.User.findOne({
+            let user = await db.UserAccount.findOne({
                 where: {email : userEmail}
             })
             console.log(userEmail)
