@@ -123,22 +123,25 @@ function Registration() {
         {/* Labels and inputs for form data */}
 
         <div className='form-group'>
-
         <label className="label">First Name</label>
-        <input onChange={handleFirstName} className="input"
+        <input 
+        placeholder ="Enter First Name..." 
+        onChange={handleFirstName} className="input"
           value={firstName} type="text" />
         </div>
 
         <div className='form-group'>
         <label className="label">Last Name</label>
-        <input onChange={handleLastName} className="input"
+        <input 
+        placeholder ="Enter Last Name..." 
+        onChange={handleLastName} className="input"
           value={lastName} type="text" />
         </div>
 
         <div className='form-group'>
         <label className="label">Email</label>
         <input
-        placeholder ="Enter Email.." 
+        placeholder ="Enter Email..." 
         onChange={handleEmail} className="input"
           value={email} type="email" />
         </div>
@@ -146,7 +149,7 @@ function Registration() {
         <div className='form-group'>
         <label className="label">Password</label>
         <input
-        placeholder ="Enter Password.." 
+        placeholder ="Enter Password..." 
         onChange={handlePassword} className="input"
           value={password} type="password" />
         </div>
