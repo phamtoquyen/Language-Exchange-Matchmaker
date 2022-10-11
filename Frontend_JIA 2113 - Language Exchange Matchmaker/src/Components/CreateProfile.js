@@ -53,6 +53,9 @@ function CreateProfile() {
   {value:"Sport", label: "Sport"},
   {value:"Gardening", label:"Gardening"},
   {value:"Working out", label:"Working out"},
+  {value:"Gaming", label:"Gaming"},
+  {value:"Music", label:"Music"},
+  {value:"Watching Movies", label:"Watching Movies"},
  ]
 
 

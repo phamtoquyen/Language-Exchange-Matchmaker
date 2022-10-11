@@ -153,7 +153,10 @@ function Registration() {
         onChange={handlePassword} className="input"
           value={password} type="password" />
         </div>
-
+        Password Requirements:
+          <n> * Atleast 8 characters long. </n>
+          <n> * A combination of uppercase and lowercase letters.</n>
+          <n> * Atleast 1 number.</n>
         <Button className="btn-Screen"  onClick={handleSubmit}>
           Create Profile
         </Button>
