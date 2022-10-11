@@ -122,7 +122,7 @@ function CreateProfile() {
         style={{
           display: error ? '' : 'none',
         }}>
-        <h1>enter required fields</h1>
+        <h3>Enter all required fields</h3>
       </div>
     );
   };
