@@ -39,7 +39,7 @@ class Login extends Component {
             }
             if (data && data.errCode == 0){
             // todo when login successfull!
-            console.log("Login Successfull!")
+            console.log("login successull!")
             }
         }catch(error){
             if (error.response){
