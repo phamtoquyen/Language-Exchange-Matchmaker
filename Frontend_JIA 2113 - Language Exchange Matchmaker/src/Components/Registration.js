@@ -132,7 +132,9 @@ function Registration() {
 
         <div className='form-group'>
         <label className="label">Last Name</label>
-        <input onChange={handleLastName} className="input"
+        <input 
+        placeholder ="Enter Last Name..." 
+        onChange={handleLastName} className="input"
           value={lastName} type="text" />
         </div>
 
