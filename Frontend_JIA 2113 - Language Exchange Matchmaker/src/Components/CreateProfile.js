@@ -53,6 +53,9 @@ function CreateProfile() {
   {value:"Sport", label: "Sport"},
   {value:"Gardening", label:"Gardening"},
   {value:"Working out", label:"Working out"},
+  {value:"Gaming", label:"Gaming"},
+  {value:"Music", label:"Music"},
+  {value:"Watching Movies", label:"Watching Movies"},
  ]
 
 
@@ -119,7 +122,7 @@ function CreateProfile() {
         style={{
           display: error ? '' : 'none',
         }}>
-        <h1>enter required fields</h1>
+        <h3>Enter all required fields</h3>
       </div>
     );
   };
