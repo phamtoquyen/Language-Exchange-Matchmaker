@@ -1,7 +1,7 @@
 import pool from '../config/connectDB';
 
 let getAllUsers = async (req, res) => { //GET function
-    const [rows, fields] = await pool.execute(`SELECT * FROM users`);
+    const [rows, fields] = await pool.execute(`SELECT * FROM UserAccount`);
     return res.status(200).json({
         message: 'ok',
         data: rows
@@ -15,7 +15,7 @@ let createNewUser = async (req, res) => { //POST function
             message: 'missing @params'
         })
     }
-    await pool.execute('insert into users(firstName, lastName, email, address) values(?, ?, ?, ?)', [firstName, lastName, email, address]);
+    await pool.execute('insert into UserAccount(firstName, lastName, email, address) values(?, ?, ?, ?)', [firstName, lastName, email, address]);
     return res.status(200).json({
         message: 'ok'
     })
@@ -29,7 +29,7 @@ let updateUser = async (req, res) => { // PUT function
         })
     }
 
-    await pool.execute('update users set firstName = ?, lastName= ?, email = ?, address= ? WHERE id = ?',
+    await pool.execute('update UserAccount set firstName = ?, lastName= ?, email = ?, address= ? WHERE id = ?',
         [firstName, lastName, email, address, id]);
     return res.status(200).json({
         message: 'ok'
@@ -45,7 +45,7 @@ let deleteUser = async (req, res) => { // DELETE function
         })
     }
 
-    await pool.execute('delete from users where id = ?', [userId])
+    await pool.execute('delete from UserAccount where id = ?', [userId])
       return res.status(200).json({
         message: 'ok'
     })
