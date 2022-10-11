@@ -52,7 +52,7 @@ function CreateProfile() {
   {value:"Reading", label:"Reading"},
   {value:"Sport", label: "Sport"},
   {value:"Gardening", label:"Gardening"},
-  {value:"Workout", label:"Workout"},
+  {value:"Working out", label:"Working out"},
  ]
 
 
@@ -128,6 +128,7 @@ function CreateProfile() {
     <div className="screen-Background">
       <div className="screen-Container">
         <h1>Set Profile</h1>
+        <h6>(* indicates required fields)</h6>
  
       {/* Calling to the methods */}
       <div className="messages">
