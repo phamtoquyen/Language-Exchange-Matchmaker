@@ -102,7 +102,7 @@ function Registration() {
         style={{
           display: error ? '' : 'none',
         }}>
-        <h1>enter all the fields</h1>
+        <h1>Please enter all the fields!</h1>
       </div>
     );
   };
