@@ -8,7 +8,6 @@ let handleLogin = async (req, res) => {
             errorCode: 1,
             message: "Missing username or/and password"
         })
-
     }
     // Call handleUserLogin to have the value of userData
     let userData = await userService.handleUserLogin(email, password)
