@@ -7,6 +7,8 @@ import Registration from "../Components/Registration";
 import Login from '../Components/Login';
 import React, { Component }  from 'react';
 import CreateProfile from '../Components/CreateProfile';
+import LogoutConfirmationPage from '../Components/LogoutConfirmationPage';
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
           <Route path ="/Login" element ={<Login/>}/>
           <Route path ="/Register" element ={<Registration />}/>
           <Route path ="/CreateProfile" element ={<CreateProfile />}/>
+          <Route path ="/LogoutConfirmation" element ={<LogoutConfirmationPage />}/>
        </Routes>
       </Router>
     
