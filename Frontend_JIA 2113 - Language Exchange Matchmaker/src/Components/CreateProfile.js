@@ -5,6 +5,8 @@ import './CreateProfile.css';
 import Select from "react-select";
 
 import Button from 'react-bootstrap/Button';
+import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
+
 
 
 function CreateProfile() {
@@ -82,9 +84,10 @@ function CreateProfile() {
  const handleHobby = (selectedOption) => {
   setHobby(selectedOption);
  };
-
-
-
+const [search] = useSearchParams();
+ const id = search.get("id");
+ console.log(id)
+ const navigate = useNavigate();
   // Handling the form submission
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -96,6 +99,14 @@ function CreateProfile() {
       setError(false);
       
     }
+    
+  
+    navigate({
+        pathname: "/Dashboard",
+        search: createSearchParams({
+            id: id
+        }).toString()
+    });
   };
  
   // Showing success message

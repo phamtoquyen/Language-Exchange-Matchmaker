@@ -7,6 +7,7 @@ import Registration from "../Components/Registration";
 import Login from '../Components/Login';
 import React, { Component }  from 'react';
 import CreateProfile from '../Components/CreateProfile';
+import Dashboard from '../Components/Dashboard';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path ="/Login" element ={<Login/>}/>
           <Route path ="/Register" element ={<Registration />}/>
           <Route path ="/CreateProfile" element ={<CreateProfile />}/>
+          <Route path ="/Dashboard" element ={<Dashboard />}/>
        </Routes>
       </Router>
     
