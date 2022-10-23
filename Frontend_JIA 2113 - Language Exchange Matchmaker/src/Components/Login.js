@@ -40,8 +40,7 @@ class Login extends Component {
             }
             if (data && data.errCode == 0){
             // todo when login successfull!
-            //switchpage()
-            console.log("login successull!")
+
             }
         }catch(error){
             if (error.response){
