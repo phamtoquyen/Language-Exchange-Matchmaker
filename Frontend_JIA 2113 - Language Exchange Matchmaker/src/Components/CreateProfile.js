@@ -5,13 +5,10 @@ import './CreateProfile.css';
 import Select from "react-select";
 
 import Button from 'react-bootstrap/Button';
-<<<<<<< HEAD
+
 import { handleProfileCreationAPI } from '../Services/userService';
-=======
 import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
 
-
->>>>>>> Dashboard
 
 function CreateProfile() {
     // States for registration
@@ -23,7 +20,7 @@ function CreateProfile() {
   const [profession, setProfession] = useState('');
   const [hobby, setHobby] = useState('');
   const [errMsg ,setErrMsg] = useState('');
-
+  
   // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
@@ -123,9 +120,9 @@ const [search] = useSearchParams();
         if (error.response.data){
                 setErrMsg(error.response.data.message)
                 console.log(errMsg)
-
-        }
+      
     }
+  }
     }
     
   
@@ -166,7 +163,7 @@ const [search] = useSearchParams();
   return (
     <div className="screen-Background">
       <div className="screen-Container">
-        <div>
+      <div className="screen-Content">
         <div>
         <h1>Set Profile</h1>
         <h6>(* indicates required fields)</h6>
@@ -217,7 +214,7 @@ const [search] = useSearchParams();
 
         <div className='form-group'>
         <label className="label">Hobby</label>
-        <Select options={Hobby} onChange={handleHobby} />
+        <Select options={Hobby} onChange={handleHobby} isMulti/>
         </div>
         
 
