@@ -57,7 +57,7 @@ function Registration() {
     }
     setErrMsg("");
     try{
-      
+      console.log('Sending Register: ' + firstName + lastName+ email+ password);
       let data = await handleRegisterApi(firstName,lastName,email, password);
       console.log("fj");
       if (data && data.errCode !== 0){

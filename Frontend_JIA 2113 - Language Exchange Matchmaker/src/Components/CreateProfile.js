@@ -60,28 +60,29 @@ function CreateProfile() {
 
 
  const handleNativeLanguage = (selectedOption) => {
-  setNativeLanguage(selectedOption);
+  console.log(selectedOption.value)
+  setNativeLanguage(selectedOption.value);
  };
 
  const handleTargetLanguage = (selectedOption) => {
-  setTargetLanguage(selectedOption);
+  setTargetLanguage(selectedOption.value);
  };
  const handleTargetLanguageProficiency = (selectedOption) => {
-  setTargetLanguageProficiency(selectedOption);
+  setTargetLanguageProficiency(selectedOption.value);
  };
 
  const handleAge = (e) => {
-  setAge(e);
+  setAge(e.target.value);
  };
 
  const handleGender = (selectedOption) => {
-  setGender(selectedOption);
+  setGender(selectedOption.value);
  };
  const handleProfession = (selectedOption) => {
-  setProfession(selectedOption);
+  setProfession(selectedOption.value);
  };
  const handleHobby = (selectedOption) => {
-  setHobby(selectedOption);
+  setHobby(selectedOption.value);
  };
 
 
@@ -97,9 +98,9 @@ function CreateProfile() {
     }
     setError("");
     try{
-      // console.log('Sending create')
+      console.log('Sending create: ' + nativeLanguage + targetLanguage+ targetLanguageProficiency+ age+ gender+ profession+ hobby)
       let data = await handleProfileCreationAPI(nativeLanguage, targetLanguage, targetLanguageProficiency, age, gender, profession, hobby);
-      // console.log('Create done')
+      console.log('Create done')
 
       if (data && data.errCode !== 0){
           setSubmitted(true);
