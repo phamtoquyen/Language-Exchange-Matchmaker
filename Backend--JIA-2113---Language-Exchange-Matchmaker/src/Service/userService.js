@@ -54,7 +54,7 @@ let handleUserRegister = (firstName, lastName, email, password) => {
             let userData = {};
             let isExist = await checkUserEmail(email);
             if (isExist){
-                //use already exists
+                //user already exists
                 //Then, compare password
                 //1. Check again if later there someone delete that user in the database after we check
                 userData.errCode = 1;
@@ -76,10 +76,17 @@ let handleUserRegister = (firstName, lastName, email, password) => {
                     createdAt: new Date(),
                     updatedAt: new Date()
                 });
+<<<<<<< HEAD
                 console.log(UserAccount.lastName);
                 userData.errCode = 0;
                 userData.errMessage = 'Successfully Registered';
                 user_id = UserAccount['dataValues']['id']
+=======
+                console.log(user.id);
+                userData.errCode = 0;
+                userData.errMessage = 'Successfully Registered';
+                userData.id = user.id;
+>>>>>>> Dashboard
                 }
             resolve(userData);
     

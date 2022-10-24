@@ -3,6 +3,7 @@ import homeController from '../controller/homeController';
 import multer from 'multer';
 import path from 'path';
 import userController from '../controller/userController';
+import dashBoardController from '../controller/dashBoardController';
 var appRoot = require('app-root-path');
 let router = express.Router();
 
@@ -13,8 +14,12 @@ let initWebRoute = (app) => {
     // API
     router.post('/api/login', userController.handleLogin)
     router.post('/Register', userController.handleRegister)
+<<<<<<< HEAD
     router.post('/CreateProfile', userController.handleProfileCreation)
   
+=======
+    router.post('/Dashboard', dashBoardController.handleDashBoard)
+>>>>>>> Dashboard
     return app.use('/', router);
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Login.scss';
 import {handleLoginApi} from '../Services/userService';
-
+//import { createSearchParams, useNavigate } from "react-router-dom";
 
 class Login extends Component {
     constructor(props) {
@@ -9,7 +9,8 @@ class Login extends Component {
         this.state = {
             username: '',
             password: '',
-            errMessage: ''
+            errMessage: '',
+            submitted: false
         }
     }
 
@@ -24,7 +25,7 @@ class Login extends Component {
             password: event.target.value
         })
     }
-
+    
     handleOnClick = async() => {
         this.setState({
             errMessage: ''
@@ -39,7 +40,7 @@ class Login extends Component {
             }
             if (data && data.errCode == 0){
             // todo when login successfull!
-            console.log("login successull!")
+
             }
         }catch(error){
             if (error.response){
@@ -102,6 +103,15 @@ class Login extends Component {
     }
 }
 
-
+/*function switchpage() {
+    const navigate = useNavigate();
+  
+    navigate({
+        pathname: "/Dashboard",
+        search: createSearchParams({
+            id: data.user.id
+        }).toString()
+    });
+  }*/
 
 export default Login;

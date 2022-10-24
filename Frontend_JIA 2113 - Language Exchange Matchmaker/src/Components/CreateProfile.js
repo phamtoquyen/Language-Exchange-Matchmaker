@@ -5,7 +5,13 @@ import './CreateProfile.css';
 import Select from "react-select";
 
 import Button from 'react-bootstrap/Button';
+<<<<<<< HEAD
 import { handleProfileCreationAPI } from '../Services/userService';
+=======
+import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
+
+
+>>>>>>> Dashboard
 
 function CreateProfile() {
     // States for registration
@@ -84,9 +90,10 @@ function CreateProfile() {
  const handleHobby = (selectedOption) => {
   setHobby(selectedOption.value);
  };
-
-
-
+const [search] = useSearchParams();
+ const id = search.get("id");
+ console.log(id)
+ const navigate = useNavigate();
   // Handling the form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -120,6 +127,14 @@ function CreateProfile() {
         }
     }
     }
+    
+  
+    navigate({
+        pathname: "/Dashboard",
+        search: createSearchParams({
+            id: id
+        }).toString()
+    });
   };
  
   // Showing success message
@@ -151,8 +166,11 @@ function CreateProfile() {
   return (
     <div className="screen-Background">
       <div className="screen-Container">
+        <div>
+        <div>
         <h1>Set Profile</h1>
- 
+        <h6>(* indicates required fields)</h6>
+        </div>
       {/* Calling to the methods */}
       <div className="messages">
         {errorMessage()}
@@ -208,6 +226,7 @@ function CreateProfile() {
           Create Profile
         </Button>
       </form>
+      </div>
       </div>
     </div>
   );
