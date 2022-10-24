@@ -1,6 +1,7 @@
 import db from '../models/index';
 import bcrypt from 'bcryptjs';
 
+let user_id = null
 let handleUserLogin = (email, password) => {
     return new Promise(async (resolve, reject) => {
         try{
@@ -10,16 +11,18 @@ let handleUserLogin = (email, password) => {
                 //use already exists
                 //Then, compare password
                 //1. Check again if later there someone delete that user in the database after we check
-                let user = await db.UserAccount.findOne({
+                let UserAccount = await db.UserAccount.findOne({
                     where: {email: email}
                 });
-                if (user){
+                if (UserAccount){
                     //Compare password, using bycrypt lib
-                    let check = await bcrypt.compareSync(password, user.password);
+                    let check = await bcrypt.compareSync(password, UserAccount.password);
                     if (check){
                         userData.errCode = 0;
                         userData.errMessage = 'Password matched!'
-                        userData.user = user;
+                        userData.UserAccount = UserAccount;
+                        user_id = UserAccount['dataValues']['id']
+                        console.log(user_id)
                     } else {
                         userData.errCode = 3;
                         userData.errMessage = 'Wrong Password!'
@@ -65,20 +68,18 @@ let handleUserRegister = (firstName, lastName, email, password) => {
                 */
                 const salt = bcrypt.genSaltSync(10);
                 const hash = bcrypt.hashSync(password, salt);
-                let user = await db.UserAccount.create({
+                let UserAccount = await db.UserAccount.create({
                     email: email,
                     password: hash,
-                    phonenumber: '',
                     firstName: firstName,
                     lastName: lastName,
-                    address: '',
-                    gender: 0, // 0 - F and 1 - M
                     createdAt: new Date(),
                     updatedAt: new Date()
                 });
-                console.log(user.lastName);
+                console.log(UserAccount.lastName);
                 userData.errCode = 0;
                 userData.errMessage = 'Successfully Registered';
+                user_id = UserAccount['dataValues']['id']
                 }
             resolve(userData);
     
@@ -108,6 +109,43 @@ let checkUserEmail = (userEmail) => {
     })
 }
 
+let handleProfileCreation = (native_language, target_language, target_language_proficiency, age, gender, profession, hobby) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            // Return obj to Controller and the Controller will response to the user
+            let userData = {};
+            
+                /*userDate object {
+                errCode: 1
+                errMessage: "username not exist"
+                }
+                */
+            console.log("hi");
+
+            let userProfile = await db.UserProfile.create({
+                id: user_id,
+                native_language: native_language,
+                target_language: target_language,
+                target_language_proficiency: target_language_proficiency,
+                age: age,
+                gender: gender,
+                profession: profession,
+                hobby: hobby
+            });
+            console.log("hi");
+            userData.errCode = 0;
+            userData.errMessage = 'Profile Successfully Created!';
+            
+
+            
+            resolve(userData);
+    
+        }catch(e){
+            reject(e)
+        }
+    })
+}
+
 module.exports = {
-handleUserLogin, checkUserEmail, handleUserRegister
+handleUserLogin, checkUserEmail, handleUserRegister, handleProfileCreation
 }

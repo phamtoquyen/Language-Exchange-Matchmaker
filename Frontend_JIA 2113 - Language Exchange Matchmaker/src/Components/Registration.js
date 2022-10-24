@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import { handleRegisterApi } from '../Services/userService';
 
-
 function Registration() {
     // States for registration
 

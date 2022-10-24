@@ -5,18 +5,19 @@ import './CreateProfile.css';
 import Select from "react-select";
 
 import Button from 'react-bootstrap/Button';
-
+import { handleProfileCreationAPI } from '../Services/userService';
 
 function CreateProfile() {
     // States for registration
-  const [language, setLanguage] = useState('');
+  const [nativeLanguage, setNativeLanguage] = useState('');
   const [targetLanguage, setTargetLanguage] = useState('');
-  const [level, setLevel] = useState('');
+  const [targetLanguageProficiency, setTargetLanguageProficiency] = useState('');
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
   const [profession, setProfession] = useState('');
   const [hobby, setHobby] = useState('');
-  
+  const [errMsg ,setErrMsg] = useState('');
+
   // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
@@ -30,7 +31,7 @@ function CreateProfile() {
   {value: "English", label: "English"},
   {value: "Korean", label: "Korean"},
  ]
- const Level = [
+ const TargetLanguageProficiency = [
   {value: "Beginner", label: "Beginner"},
   {value: "Intermediate", label: "Intermediate"},
   {value: "Fluent", label: "Fluent"},
@@ -58,15 +59,15 @@ function CreateProfile() {
 
 
 
- const handleLanguage = (selectedOption) => {
-  setLanguage(selectedOption);
+ const handleNativeLanguage = (selectedOption) => {
+  setNativeLanguage(selectedOption);
  };
 
  const handleTargetLanguage = (selectedOption) => {
   setTargetLanguage(selectedOption);
  };
- const handleLevel = (selectedOption) => {
-  setLevel(selectedOption);
+ const handleTargetLanguageProficiency = (selectedOption) => {
+  setTargetLanguageProficiency(selectedOption);
  };
 
  const handleAge = (e) => {
@@ -86,15 +87,37 @@ function CreateProfile() {
 
 
   // Handling the form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (language === '' || targetLanguage === '' || level === '' || age === '' || profession === '') {
-      console.log(age);
+    if (nativeLanguage === '' || targetLanguage === '' || targetLanguageProficiency === '' || age === '' || profession === '') {
       setError(true);
     } else {
       setSubmitted(true);
       setError(false);
-      
+    }
+    setError("");
+    try{
+      // console.log('Sending create')
+      let data = await handleProfileCreationAPI(nativeLanguage, targetLanguage, targetLanguageProficiency, age, gender, profession, hobby);
+      // console.log('Create done')
+
+      if (data && data.errCode !== 0){
+          setSubmitted(true);
+          setErrMsg(data.message);
+      }
+      if (data && data.errCode === 0){
+      // todo when login successfull!
+      setSubmitted(true);
+      console.log("Profile Creation Successful!")
+      }
+    } catch(error){
+      if (error.response){
+        if (error.response.data){
+                setErrMsg(error.response.data.message)
+                console.log(errMsg)
+
+        }
+    }
     }
   };
  
@@ -141,7 +164,7 @@ function CreateProfile() {
 
         <div className='form-group'>
         <label className="label">Native Language*</label>
-        <Select options={NativeLanguage} onChange={handleLanguage}/>
+        <Select options={NativeLanguage} onChange={handleNativeLanguage}/>
         </div>
 
         <div className='form-group'>
@@ -151,7 +174,7 @@ function CreateProfile() {
 
         <div className='form-group'>
         <label className="label">Level of Target Language*</label>
-        <Select options={Level} onChange={handleLevel}/>
+        <Select options={TargetLanguageProficiency} onChange={handleTargetLanguageProficiency}/>
         </div>
 
         <div className='form-group'>
@@ -175,7 +198,7 @@ function CreateProfile() {
 
         <div className='form-group'>
         <label className="label">Hobby</label>
-        <Select options={Hobby} onChange={handleHobby} isMulti/>
+        <Select options={Hobby} onChange={handleHobby} />
         </div>
         
 
