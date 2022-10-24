@@ -106,15 +106,16 @@ function Registration() {
   };
  
   return (
+    <div>
     <div className="screen-Background">
       <div className="screen-Container">
+        <div className="screen-Content">
         <h1>User Registration</h1>
- 
+        
       {/* Calling to the methods */}
       <div className="messages">
         {errorMessage()}
       </div>
- 
       <form>
         <div className="d-grid gap-2">
         {/* Labels and inputs for form data */}
@@ -154,6 +155,8 @@ function Registration() {
         </div>
       </form>
       </div>
+      </div>
+    </div>
     </div>
   );
     

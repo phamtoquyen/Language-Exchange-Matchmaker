@@ -138,8 +138,11 @@ const [search] = useSearchParams();
   return (
     <div className="screen-Background">
       <div className="screen-Container">
+        <div>
+        <div>
         <h1>Set Profile</h1>
- 
+        <h6>(* indicates required fields)</h6>
+        </div>
       {/* Calling to the methods */}
       <div className="messages">
         {errorMessage()}
@@ -195,6 +198,7 @@ const [search] = useSearchParams();
           Create Profile
         </Button>
       </form>
+      </div>
       </div>
     </div>
   );

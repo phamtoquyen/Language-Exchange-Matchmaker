@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import React from "react";
 import './Registration.css'; 
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { createSearchParams, useSearchParams, useNavigate } from "react-router-dom";
 
 import Button from 'react-bootstrap/Button';
 import { handleUserDashBoardApi } from '../Services/dashboardService';
@@ -15,9 +15,7 @@ function Dashboard()  {
   const [FName, setFName] = useState();
   const [LName, setLName] = useState();
   const [email,setEmail] = useState();
-
-
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
  
   
@@ -40,20 +38,37 @@ function Dashboard()  {
     // Update the document title using the browser API
     getInfo()
   });
+  
+  const Logout = async(e) => {
+    navigate({
+      pathname: "/LogoutConfirmation",
+      search: createSearchParams({
+          id: id
+      }).toString()
+  });
+
+  }
  
   return (
     
     <div className="screen-Background">
       <div  className="screen-Container">
-      
 
+      <div className="screen-Content">
         <h1 >Dashboard</h1>
         <h1>{FName} {LName}</h1>
         <h2>{email}</h2>
         
+        
         <Button className="btn-Screen">
           Find Friend
         </Button>
+       
+        <Button className="btn-Screen" onClick={Logout}>
+          Logout
+        </Button>
+
+        </div>
         </div>
       
       </div>
