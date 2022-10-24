@@ -59,17 +59,10 @@ function Registration() {
       //navigate("/CreateProfile");  
     setErrMsg("");
     try{
-<<<<<<< HEAD
       console.log('Sending Register: ' + firstName + lastName+ email+ password);
       let data = await handleRegisterApi(firstName,lastName,email, password);
       console.log("fj");
       if (data && data.errCode !== 0){
-=======
-      
-      data = await handleRegisterApi(firstName,lastName,email, password);
-      console.log(data);
-      if (data && data.errorCode !== 0){
->>>>>>> Dashboard
           setSubmitted(true);
           setError(true);
           setErrMsg(data.message);

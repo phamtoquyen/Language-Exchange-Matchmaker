@@ -6,7 +6,7 @@ let handleUserDashBoard = (id) => {
             // Return obj to Controller and the Controller will response to the user
             let userData = {};
     
-            let user = await db.User.findOne({
+            let user = await db.UserAccount.findOne({
                     where: {id: id}
                 });
                 if (user){
