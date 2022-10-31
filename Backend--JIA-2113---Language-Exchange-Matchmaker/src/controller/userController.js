@@ -34,10 +34,12 @@ let handleRegister = async (req, res) => {
     }
     // Call handleUserLogin to have the value of userData
     let userData = await userService.handleUserRegister(firstName,lastName, email, password)
+    console.log(userData.id);
 
     return res.status(200).json({
          errorCode: userData.errCode,
          message: userData.errMessage,
+         id: userData.id,
          user: userData.user? userData.user : {}
     })
 }
