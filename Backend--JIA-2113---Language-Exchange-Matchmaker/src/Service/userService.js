@@ -22,6 +22,7 @@ let handleUserLogin = (email, password) => {
                         userData.errMessage = 'Password matched!'
                         userData.UserAccount = UserAccount;
                         user_id = UserAccount['dataValues']['id']
+                        userData.id =  user_id
                         console.log(user_id)
                     } else {
                         userData.errCode = 3;
