@@ -120,7 +120,6 @@ const [search] = useSearchParams();
         if (error.response.data){
                 setErrMsg(error.response.data.message)
                 console.log(errMsg)
-      
     }
   }
     }

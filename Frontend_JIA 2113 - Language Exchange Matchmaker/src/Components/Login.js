@@ -1,46 +1,53 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import './Login.scss';
 import {handleLoginApi} from '../Services/userService';
-//import { createSearchParams, useNavigate } from "react-router-dom";
+import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
 
-class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            password: '',
-            errMessage: '',
-            submitted: false
-        }
+function Login (){
+    let data;
+     const [username, setUsername] = useState('');
+     const [password, setPassword] = useState('');
+     const navigate = useNavigate();
+     const [errMsg ,setErrMsg] = useState('');
+
+      // States for checking the errors
+      const [submitted, setSubmitted] = useState(false);
+      const [error, setError] = useState(false);
+
+
+    const handleOnChangeUserInput = (event) => {
+        setUsername(event.target.value);
+        setSubmitted(false);
     }
 
-    handleOnChangeUserInput = (event) => {
-        this.setState({
-            username: event.target.value
-        })
+    const handleOnChangePassword = (event) => {
+       setPassword(event.target.value);
+       setSubmitted(false);
     }
 
-    handleOnChangePassword = (event) => {
-        this.setState({
-            password: event.target.value
-        })
-    }
+//    const [search] = useSearchParams();
+//    const id = search.get("id");
+//    console.log(id)
+
     
-    handleOnClick = async() => {
-        this.setState({
-            errMessage: ''
-        })
+    const handleOnClick = async() => {
+        setErrMsg("");
 
         try{
-            let data = await handleLoginApi(this.state.username, this.state.password);
+            data = await handleLoginApi(username, password);
+            console.log("check >>>>" , data.errorCode);
             if (data && data.errCode !== 0){
-            this.setState({
-                errMessage: data.message
-            })
+            setErrMsg(data.message);
             }
-            if (data && data.errCode == 0){
-            // todo when login successfull!
-
+            if (data.errorCode == 0){
+            console.log("I am")
+            // todo when login successful!
+            navigate({
+                    pathname: "/Dashboard",
+                    search: createSearchParams({
+                        id: data.id
+                    }).toString()
+                });
             }
         }catch(error){
             if (error.response){
@@ -53,8 +60,6 @@ class Login extends Component {
             }
         }
     }
-    render() {
-    //JSX
 
         return (
         <div>
@@ -68,27 +73,27 @@ class Login extends Component {
                                     type='text'
                                     className='form-control'
                                     placeholder='Enter your username'
-                                    value = {this.state.username}
-                                    onChange = {(event) => this.handleOnChangeUserInput(event)}
+                                    value = {username}
+                                    onChange = {handleOnChangeUserInput}
                                 />
                             </div>
                         <div className='col-12 form-group login-input'>
                             <label className="password-text">Password: </label>
                             <input
-                                type='text'
+                                type='password'
                                 className='form-control'
                                 placeholder='Enter your password'
-                                value = {this.state.password}
-                                onChange = {(event) => this.handleOnChangePassword(event)}
+                                value = {password}
+                                onChange = {handleOnChangePassword}
                                 />
                         </div>
                         <div className='col-12'>
                             <div className='col-12' style= {{color: 'red'}}>
-                                {this.state.errMessage}
+                                {errMsg}
                             </div>
                             <button
                                 className='btn-login'
-                                onClick = {() => this.handleOnClick()}
+                                onClick = {handleOnClick}
                                 >Login</button>
                         </div>
                         <div className='col-12'>
@@ -99,19 +104,8 @@ class Login extends Component {
                 </div>
             </div>
         </div>
-        )
-    }
-}
+        );
 
-/*function switchpage() {
-    const navigate = useNavigate();
-  
-    navigate({
-        pathname: "/Dashboard",
-        search: createSearchParams({
-            id: data.user.id
-        }).toString()
-    });
-  }*/
+}
 
 export default Login;
