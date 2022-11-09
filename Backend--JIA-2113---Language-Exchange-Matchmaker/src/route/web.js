@@ -16,6 +16,12 @@ let initWebRoute = (app) => {
     router.post('/Register', userController.handleRegister)
     router.post('/CreateProfile', userController.handleProfileCreation)
     router.post('/Dashboard', dashBoardController.handleDashBoard)
+
+    //Chat routes
+    router.post('/Message', messageController)
+    router.get('/Message/:userId', userChatController.handleUserChats)
+    router.get('/Message/find/:firstId/:secondId', findChatController.handleFindChat)
+
     return app.use('/', router);
 }
 
