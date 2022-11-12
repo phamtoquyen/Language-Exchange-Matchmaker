@@ -48,13 +48,20 @@ function Dashboard()  {
   });
 
   }
- 
+  const handleHelp = async(e) => {
+    navigate({
+      pathname: "/HelpPage",
+      search: createSearchParams({
+          id: id
+      }).toString()
+  });
+  }
   return (
     
     <div className="screen-Background">
       <div  className="screen-Container">
-
       <div className="screen-Content">
+        
         <h1 >Dashboard</h1>
         <h1>{FName} {LName}</h1>
         <h2>{email}</h2>
@@ -69,8 +76,8 @@ function Dashboard()  {
         </Button>
 
         </div>
+        <Button className="btn-help" onClick={handleHelp} >?</Button>
         </div>
-      
       </div>
   
     
