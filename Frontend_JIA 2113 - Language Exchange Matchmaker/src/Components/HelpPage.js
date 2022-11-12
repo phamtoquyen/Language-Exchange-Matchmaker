@@ -84,7 +84,6 @@ const toggle = index => {
        
     <div className="screen-Background">
       <div className="screen-Container">
-      <Button className="btn-help" onClick={handleBack} >back</Button>
         <div className="screen-Content">
             <h1>Find Your Issue</h1>
         <AccordionSection>
@@ -109,6 +108,7 @@ const toggle = index => {
             
         </AccordionSection>
         </div>
+        <Button className="btn-help" onClick={handleBack} >back</Button>
       </div>
       </div>
       
