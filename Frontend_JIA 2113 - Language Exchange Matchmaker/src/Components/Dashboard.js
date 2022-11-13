@@ -50,7 +50,7 @@ function Dashboard()  {
   }
  
   return (
-    
+
     <div className="screen-Background">
       <div  className="screen-Container">
 
@@ -58,22 +58,22 @@ function Dashboard()  {
         <h1 >Dashboard</h1>
         <h1>{FName} {LName}</h1>
         <h2>{email}</h2>
-        
-        
+
+
         <Button className="btn-Screen">
           Find Friend
         </Button>
-       
+
         <Button className="btn-Screen" onClick={Logout}>
           Logout
         </Button>
 
         </div>
         </div>
-      
+
       </div>
-  
-    
+
+
   );
     
 }
