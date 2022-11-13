@@ -1,11 +1,12 @@
 //import dashboardService from '../Service/MessageService';
 //import db from '../models/index';
 //
+////Create a new chat
 //let createMessage = async (req, res) => {
 //    const messageData = MessageModel.build({
 //        members: [req.body.senderId, res.body.receiverId]
 //    });
-//
+//    //Interact to db
 //    try{
 //        const result = await messageData.save();
 //        res.status(200).json(result);
@@ -16,7 +17,9 @@
 //}
 //
 //let handleUserChats = async(req, res) => {
+//    //Interact with db
 //    try{
+//        //Find the chat where members contain userID taken from @param
 //        const chat = await MessageModel.find({
 //            members: {$in: [req.params.userId]}
 //        })
