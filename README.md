@@ -43,3 +43,15 @@
 * Some UI design needs to be improved.
 * Login component is class component, currently having issue with wrapping that into function to redirect between routes.
 * Not having shared database to test matching algorithm.
+
+## Version 0.4.0
+### New Features
+* HelpPage
+
+### Bug Fixes
+* RESTFull API for MeasageModel
+
+### Known Issues
+* In sequelize, datatype of Array is not supported using mySQL.
+* Redesigning MessageMode, and chatModel with associations.
+
