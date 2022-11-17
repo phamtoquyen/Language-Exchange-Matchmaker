@@ -10,12 +10,17 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-      models.UserAccount.hasMany(MessageModel);
-      MessageModel.hasMany(models.UserAccount);
+    //One chat mode --> many messageModel
+    models.ChatModel.belongsTo(MessageModel,{
+        foreignKey:'chatId'
+    })
+    models.UserAccount.belongsTo(MessageModel, {
+        foreignKey: 'senderId'
+    })
     }
   };
   MessageModel.init({
+    senderId: DataTypes.INTEGER,
     chatId: DataTypes.INTEGER,
     text: DataTypes.STRING
   }, {
