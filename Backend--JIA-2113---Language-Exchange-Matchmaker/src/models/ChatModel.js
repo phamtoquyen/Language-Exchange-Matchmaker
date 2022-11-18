@@ -11,23 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      //One chat model belongs to many userAccount.
-      ChatModel.belongsTo(models.UserAccount,{
-        foreignKey:'senderId'
-      }),
-      ChatModel.belongsTo(models.UserAccount,{
-         foreignKey:'receiverId'
-      })
 
     }
   };
   ChatModel.init({
-    senderId: DataTypes.INTEGER,
-    receiverId: DataTypes.INTEGER,
+    senderId: DataTypes.STRING,
+    receiverId: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'ChatModel',
   });
 
   return ChatModel;
-  };
+};
