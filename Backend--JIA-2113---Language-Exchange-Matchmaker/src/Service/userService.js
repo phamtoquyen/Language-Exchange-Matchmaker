@@ -114,14 +114,7 @@ let checkUserEmail = (userEmail) => {
 let handleProfileCreation = (native_language, target_language, target_language_proficiency, age, gender, profession, hobby) => {
     return new Promise(async (resolve, reject) => {
         try{
-            // Return obj to Controller and the Controller will response to the user
             let userData = {};
-            
-                /*userDate object {
-                errCode: 1
-                errMessage: "username not exist"
-                }
-                */
             console.log("hi");
 
             let userProfile = await db.UserProfile.create({
@@ -137,11 +130,7 @@ let handleProfileCreation = (native_language, target_language, target_language_p
             console.log("hi");
             userData.errCode = 0;
             userData.errMessage = 'Profile Successfully Created!';
-            
-
-            
             resolve(userData);
-    
         }catch(e){
             reject(e)
         }

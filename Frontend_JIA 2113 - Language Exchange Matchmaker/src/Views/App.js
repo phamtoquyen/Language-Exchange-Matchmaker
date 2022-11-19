@@ -9,7 +9,7 @@ import React, { Component }  from 'react';
 import CreateProfile from '../Components/CreateProfile';
 import Dashboard from '../Components/Dashboard';
 import LogoutConfirmationPage from '../Components/LogoutConfirmationPage';
-import HelpPage from '../Components/HelpPage';
+//import HelpPage from '../Components/HelpPage';
 
 function App() {
   return (
@@ -22,7 +22,6 @@ function App() {
           <Route path ="/CreateProfile" element ={<CreateProfile />}/>
           <Route path ="/Dashboard" element ={<Dashboard />}/>
           <Route path ="/LogoutConfirmation" element ={<LogoutConfirmationPage />}/>
-          <Route path ="/HelpPage" element ={<HelpPage />}/>
 
        </Routes>
       </Router>
