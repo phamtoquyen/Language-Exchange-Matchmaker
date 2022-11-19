@@ -20,10 +20,11 @@ let initWebRoute = (app) => {
     router.post('/Dashboard', dashBoardController.handleDashBoard)
     //Chat routes
     router.post('/Chat', chatController.createChat)
-    router.get('/Chat/:userId', chatController.findChats)
-
+    router.get('/Chats/:userId', chatController.findChats)
+    router.get('/Chat/:senderId/:receiverId', chatController.findChat)
     //Message Routes
     router.post('/Message', messageController.addMessage)
+    router.get('/Message/:chatId', messageController.findMessage)
     return app.use('/', router);
 
 

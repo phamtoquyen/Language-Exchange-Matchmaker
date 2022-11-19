@@ -4,10 +4,6 @@ let addMessage = async (req, res) => {
     let chatId = req.body.chatId;
     let senderId = req.body.senderId;
     let text = req.body.text;
-    console.log(chatId)
-    console.log(senderId)
-    console.log(text)
-
     let message = await messageService.handleMessageModel(chatId, senderId, text)
      return res.status(200).json({
              message: message.errMessage,
@@ -15,6 +11,20 @@ let addMessage = async (req, res) => {
      })
 }
 
+let findMessage = async (req, res) => {
+    let userId = req.params.chatId
+    let messageData = await messageService.handleFindMessage(userId)
+    return res.status(200).json({
+        message: messageData.errMessage,
+        chatsData: messageData.data? messageData.data : {}
+    })
+}
+
+
+
+
+
 module.exports = {
-    addMessage: addMessage
+    addMessage: addMessage,
+    findMessage: findMessage
 }

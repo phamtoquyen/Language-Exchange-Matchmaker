@@ -20,11 +20,24 @@ let findChats = async (req, res) => {
     })
 }
 
+let findChat = async (req, res) => {
+    let senderId = req.params.senderId
+    let receiverId = req.params.receiverId
+
+    console.log("check userId >>>>", senderId, receiverId)
+    let messageData = await chatService.handleFindChats(senderId, receiverId)
+    return res.status(200).json({
+        message: messageData.errMessage,
+        chatsData: messageData.data? messageData.data : {}
+    })
+}
+
 
 
 
 
 module.exports = {
     createChat: createChat,
-    findChats: findChats
+    findChats: findChats,
+    findChat: findChat
 }

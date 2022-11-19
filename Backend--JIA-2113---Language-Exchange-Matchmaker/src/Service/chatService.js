@@ -41,7 +41,34 @@ let handleFindChats = (userId) => {
     })
 }
 
+let handleFindChat = (senderId, receiverId) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            let messageData = {};
+
+            let chatModels = await db.ChatModel.findAll({
+                    where: {
+                        [Op.and]: [
+                          { senderId: senderId },
+                          { receiverId: receiverId }
+                        ]
+                    }
+            });
+            console.log(chatModels)
+            messageData.errMessage = 'Find chats of a specific sender & receiver';
+            messageData.data = chatModels;
+            resolve(messageData);
+            }
+
+        catch(e){
+            reject(e)
+        }
+    })
+}
 
 
 
-module.exports = {handleChatModel, handleFindChats}
+
+module.exports = {handleChatModel : handleChatModel,
+ handleFindChats : handleFindChats,
+ handleFindChat : handleFindChat}

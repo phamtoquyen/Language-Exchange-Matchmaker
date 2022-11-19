@@ -3,16 +3,14 @@ import db from '../models/index';
 let handleMessageModel = (chatId, senderId, text) => {
      return new Promise(async (resolve, reject) => {
             try{
-            console.log(">>>> Check messageModel ");
                 let message = {};
                 let messageModel = await db.MessageModel.create({
-//                    chatId: chatId,
+                    chatId: chatId,
                     senderId: senderId,
                     text: text,
                     createdAt: new Date(),
                     updatedAt: new Date()
                 });
-
                 message.errMessage = 'Successfully Added!';
                 message.data = messageModel;
                 resolve(message);
@@ -22,5 +20,23 @@ let handleMessageModel = (chatId, senderId, text) => {
         })
 }
 
+let handleFindMessage = (chatId) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            let messageData = {};
+            let messageModel = await db.MessageModel.findOne({
+                    where: {chatId: chatId}
+            });
+            messageData.errMessage = 'Find message from a sender';
+            messageData.data = messageModel;
+            resolve(messageData);
+            }
 
-module.exports = {handleMessageModel}
+        catch(e){
+            reject(e)
+        }
+    })
+}
+
+
+module.exports = {handleMessageModel, handleFindMessage}
