@@ -38,17 +38,7 @@
     border: none;
     color: white;
 }
-.btn-help{
-  background:linear-gradient(135deg, rgba(34,193,195,1) 0%,     rgba(253,187,45,1) 100%);
-  width: 15%;
-  margin: 10px 0;
-  height: 35px;
-  border-radius: 15px;
-  outline: none;
-  border: none;
-  color: white;
-  float: right;
-}
+
 .screen-Content {
   padding: 15px;
 }
