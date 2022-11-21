@@ -1,12 +1,17 @@
 import { useState, useEffect } from 'react';
 import "./Chat.css";
 import LogoSearch from "./LogoSearch";
+import { createSearchParams, useSearchParams, useNavigate } from "react-router-dom";
 
 function Chat() {
     //Get the user who currently login?
     //Get the userInfo,
 
     const [chats, setChats] = useState([]);
+    const[search] = useSearchParams();
+    const senderid = search.get("senderid");
+    const receiverid = search.get("receiverid");
+    console.log(receiverid);
     return (
         <div className="Chat">
              <div className="Left-side-chat">

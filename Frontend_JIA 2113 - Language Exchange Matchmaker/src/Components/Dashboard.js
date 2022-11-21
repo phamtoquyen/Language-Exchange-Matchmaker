@@ -74,7 +74,7 @@ function Dashboard()  {
   for(let i = 0; i < 5; i++) {
     array.push(
       <div className='left'>
-        <img src={profile} alt="DP" class="leftpic" />
+        <img src={profile} alt="DP" className ="leftpic" />
         <text className='text'>{name[i]}</text>
         <Button className="btn-chat" onClick={event => handleChat(event,i)}>chat</Button>
       </div>
