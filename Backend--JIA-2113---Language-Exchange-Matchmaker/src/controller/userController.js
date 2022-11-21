@@ -56,7 +56,7 @@ let handleProfileCreation = async (req, res) => {
     let hobby = req.body.hobby;
     // Call handleProfileCreation to have the value of userData
     let userData = await userService.handleProfileCreation(native_language, target_language, target_language_proficiency, age, gender, profession, hobby)
-
+    console.log(userData)
     return res.status(200).json({
          errorCode: userData.errCode,
          message: userData.errMessage,
