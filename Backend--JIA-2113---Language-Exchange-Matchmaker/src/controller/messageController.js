@@ -20,10 +20,6 @@ let findMessage = async (req, res) => {
     })
 }
 
-
-
-
-
 module.exports = {
     addMessage: addMessage,
     findMessage: findMessage
