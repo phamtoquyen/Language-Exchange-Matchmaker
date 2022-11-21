@@ -16,10 +16,7 @@ function Chat() {
                     <div className="Chat-list">
                     Conversations
                     </div>
-
-
                 </div>
-
             </div>
 
             <div className="Right-side-chat">
