@@ -25,15 +25,12 @@ let findChat = async (req, res) => {
     let receiverId = req.params.receiverId
 
     console.log("check userId >>>>", senderId, receiverId)
-    let messageData = await chatService.handleFindChats(senderId, receiverId)
+    let messageData = await chatService.handleFindChat(senderId, receiverId)
     return res.status(200).json({
         message: messageData.errMessage,
         chatsData: messageData.data? messageData.data : {}
     })
 }
-
-
-
 
 
 module.exports = {
