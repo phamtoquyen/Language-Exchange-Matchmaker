@@ -58,11 +58,9 @@ function Chat() {
             {/* Right Side */}
             <div className="Right-side-chat">
             <ChatBox
-                      chat={currentChat}
-                      currentUser={user._id}
-                      setSendMessage={setSendMessage}
-                      receivedMessage={receivedMessage}
-                    />
+              chat={currentChat}
+              currentUser={senderId}
+              />
             </div>
         </div>
     );
