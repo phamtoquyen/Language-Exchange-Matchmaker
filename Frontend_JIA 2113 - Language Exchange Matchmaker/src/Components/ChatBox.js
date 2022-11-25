@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import {handleGetUser} from '../Services/userService';
+import {handleGetUser, getMessages} from '../Services/userService';
 import { useEffect } from "react";
 import "./ChatBox.css";
 import profile from "../Styles/profilepic.jpg";
+import { format } from "timeago.js";
 
 
 function ChatBox({ chat, currentUser }) {
@@ -13,12 +14,10 @@ function ChatBox({ chat, currentUser }) {
     useEffect(() => {
           //Change operator since chat is not always avail
           const userId = chat != null ? chat["receiverId"] : null
-          console.log("check userId >>>>", userId)
           const getUserData = async () => {
             try {
               const data  = await handleGetUser(userId)
               setUserData(data);
-              console.log("check data >>>", data);
             } catch (error) {
               console.log(error);
             }
@@ -26,6 +25,21 @@ function ChatBox({ chat, currentUser }) {
 
           if (chat !== null) getUserData();
     }, [chat, currentUser]);
+
+
+  // fetch messages
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const data = await getMessages(chat.id);
+        setMessages([data.chatsData]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (chat !== null) fetchMessages();
+  }, [chat]);
 
 
 
@@ -57,9 +71,22 @@ function ChatBox({ chat, currentUser }) {
                     }}
                   />
                 </div>
-                {/*Chat Body*/}
+                {/*Chat Message*/}
                 <div className="chat-body" >
-
+                {messages.map((message) => (
+                    <>
+                      <div
+                        className={
+                          message.senderId === currentUser
+                            ? "message own"
+                            : "message"
+                        }
+                      >
+                        <span>{message.text}</span>{" "}
+                        <span>{format(message.createdAt)}</span>
+                      </div>
+                    </>
+                ))}
                 </div>
 
             </>
