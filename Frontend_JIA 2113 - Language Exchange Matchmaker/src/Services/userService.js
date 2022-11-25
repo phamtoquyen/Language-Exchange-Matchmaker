@@ -20,5 +20,11 @@ const handleGetUser = (receiverId) => {
     return axios.get(`/api/getUser/${receiverId}`)
 }
 
+const getMessages = (chatId) => {
+    return axios.get(`/Message/${chatId}`)
+}
 
-export {handleLoginApi, handleRegisterApi, handleProfileCreationAPI, handleChatApi, handleGetUser}
+
+
+
+export {handleLoginApi, handleRegisterApi, handleProfileCreationAPI, handleChatApi, handleGetUser, getMessages}

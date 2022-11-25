@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import "./Chat.css";
 import Conversation from "./Conversation";
+import ChatBox from "./ChatBox";
 import LogoSearch from "./LogoSearch";
 import { createSearchParams, useSearchParams, useNavigate } from "react-router-dom";
 import {handleChatApi} from '../Services/userService';
@@ -10,8 +11,10 @@ import {handleChatApi} from '../Services/userService';
 function Chat() {
 
     const [chats, setChats] = useState([]);
+    const [currentChat, setCurrentChat] = useState(null);
     const[search] = useSearchParams();
     const senderId = search.get("senderid");
+
 
 
 
@@ -38,7 +41,10 @@ function Chat() {
                     <h2>Chats</h2>
                     <div className="Chat-list">
                         {chats.map((chat) => (
-                        <div>
+                        <div onClick={() => {
+                        setCurrentChat(chat);
+                        }}
+                        >
                             <Conversation
                               data={chat}
                               currentUserId={senderId}
@@ -51,7 +57,10 @@ function Chat() {
 
             {/* Right Side */}
             <div className="Right-side-chat">
-            Right side
+            <ChatBox
+              chat={currentChat}
+              currentUser={senderId}
+              />
             </div>
         </div>
     );

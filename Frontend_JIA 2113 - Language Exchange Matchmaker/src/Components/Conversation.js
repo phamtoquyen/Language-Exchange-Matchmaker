@@ -9,9 +9,7 @@ import profile from "../Styles/profilepic.jpg";
 function Conversation({data, currentUserId}) {
     const [userData, setUserData] = useState(null)
      useEffect(()=> {
-
         const userId = data["receiverId"]
-        console.log(userId)
         const getUserData = async ()=> {
           try
           {
