@@ -115,7 +115,6 @@ let handleProfileCreation = (native_language, target_language, target_language_p
     return new Promise(async (resolve, reject) => {
         try{
             let userData = {};
-            console.log("hi");
 
             let userProfile = await db.UserProfile.create({
                 id: user_id,
@@ -137,6 +136,24 @@ let handleProfileCreation = (native_language, target_language, target_language_p
     })
 }
 
+let getUserInfoById = (userId) => {
+    return new Promise (async (resolve, reject) => {
+        try{
+            let user = await db.UserAccount.findOne({
+                where: {id: userId}
+            })
+            console.log(userId)
+            if (user){
+                resolve(user);
+            }else {
+                resolve([]);
+            }
+        }catch(e){
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
-handleUserLogin, checkUserEmail, handleUserRegister, handleProfileCreation
+handleUserLogin, checkUserEmail, handleUserRegister, handleProfileCreation, getUserInfoById
 }
