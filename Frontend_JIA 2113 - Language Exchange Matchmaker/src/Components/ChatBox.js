@@ -13,7 +13,7 @@ function ChatBox({ chat, currentUser }) {
     const [newMessage, setNewMessage] = useState("");
     const handleChange = (newMessage)=> {
         setNewMessage(newMessage)
-      }
+    }
 
     // fetching data for header
     useEffect(() => {

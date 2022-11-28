@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useRef} from "react";
 import "./Chat.css";
 import Conversation from "./Conversation";
 import ChatBox from "./ChatBox";
 import LogoSearch from "./LogoSearch";
 import { createSearchParams, useSearchParams, useNavigate } from "react-router-dom";
-import {handleChatApi} from '../Services/userService';
-
-
+import {handleChatApi, handleGetUser} from '../Services/userService';
+import { io } from "socket.io-client";
 
 function Chat() {
 
@@ -14,9 +14,18 @@ function Chat() {
     const [currentChat, setCurrentChat] = useState(null);
     const[search] = useSearchParams();
     const senderId = search.get("senderid");
+    const user = handleGetUser(senderId)
+    const socket = useRef();
+    const [onlineUsers, setOnlineUsers] = useState([]);
 
-
-
+     // Connect to Socket.io
+      useEffect(() => {
+        socket.current = io("ws://localhost:8800");
+        socket.current.emit("new-user-add", senderId);
+        socket.current.on("get-users", (users) => {
+          setOnlineUsers(users);
+        });
+      }, [user]);
 
     useEffect(() => {
         const getChats = async () => {
