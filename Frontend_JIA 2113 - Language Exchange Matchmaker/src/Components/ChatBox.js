@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {handleGetUser, getMessages} from '../Services/userService';
+import {handleGetUser, getMessages,  addMessage} from '../Services/userService';
 import { useEffect } from "react";
 import "./ChatBox.css";
 import profile from "../Styles/profilepic.jpg";
@@ -46,9 +46,37 @@ function ChatBox({ chat, currentUser }) {
     if (chat !== null) fetchMessages();
   }, [chat]);
 
+    // Send Message
+    const handleSend = async(e)=> {
+      e.preventDefault()
+      const message = {
+        senderId : currentUser,
+        text: newMessage,
+        chatId: chat.id,
+    }
+
+//    const receiverId = chat[receiverId];
+//    console.log(receiverId);
+//      // send message to socket server
+//    setSendMessage({...message, receiverId})
+      // send message to database
+    try {
+        const data = await addMessage(message);
+        setMessages([...messages, data]);
+        setNewMessage("");
+        console.log("Test if it up to here!!!")
+    }
+    catch
+     {
+        console.log("error")
+     }
+  }
 
 
-    return (
+
+
+
+   return (
     <>
         <div className="ChatBox-container">
         {chat ? (
@@ -101,8 +129,7 @@ function ChatBox({ chat, currentUser }) {
               value={newMessage}
               onChange={handleChange}
               />
-              <div className="send-button button" >Send</div>
-
+              <div className="send-button button" onClick = {handleSend}>Send</div>
              </div>
         </>
         ) : (

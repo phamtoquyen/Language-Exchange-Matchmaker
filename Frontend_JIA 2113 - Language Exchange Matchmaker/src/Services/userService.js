@@ -24,7 +24,12 @@ const getMessages = (chatId) => {
     return axios.get(`/Message/${chatId}`)
 }
 
+const addMessage = (data) => {
+    return axios.post(`/Message/`, data)
+}
 
 
 
-export {handleLoginApi, handleRegisterApi, handleProfileCreationAPI, handleChatApi, handleGetUser, getMessages}
+
+
+export {handleLoginApi, handleRegisterApi, handleProfileCreationAPI, handleChatApi, handleGetUser, getMessages, addMessage}
