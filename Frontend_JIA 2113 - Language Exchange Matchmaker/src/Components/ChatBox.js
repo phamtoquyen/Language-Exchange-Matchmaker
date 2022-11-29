@@ -7,7 +7,7 @@ import { format } from "timeago.js";
 import InputEmoji from 'react-input-emoji'
 
 
-function ChatBox({ chat, currentUser }) {
+function ChatBox({ chat, currentUser, setSendMessage}) {
     const [userData, setUserData] = useState(null)
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
@@ -46,6 +46,7 @@ function ChatBox({ chat, currentUser }) {
     if (chat !== null) fetchMessages();
   }, [chat]);
 
+
     // Send Message
     const handleSend = async(e)=> {
       e.preventDefault()
@@ -62,7 +63,7 @@ function ChatBox({ chat, currentUser }) {
       // send message to database
     try {
         const data = await addMessage(message);
-        setMessages([...messages, data]);
+        setMessages([...messages, data.messageData]);
         setNewMessage("");
         console.log("Test if it up to here!!!")
     }
@@ -71,9 +72,6 @@ function ChatBox({ chat, currentUser }) {
         console.log("error")
      }
   }
-
-
-
 
 
    return (

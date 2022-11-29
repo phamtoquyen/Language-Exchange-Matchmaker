@@ -16,6 +16,7 @@ function Chat() {
     const senderId = search.get("senderid");
     const user = handleGetUser(senderId)
     const socket = useRef();
+    const [sendMessage, setSendMessage] = useState(null);
     const [onlineUsers, setOnlineUsers] = useState([]);
 
      // Connect to Socket.io
@@ -69,6 +70,7 @@ function Chat() {
             <ChatBox
               chat={currentChat}
               currentUser={senderId}
+              setSendMessage={setSendMessage}
               />
             </div>
         </div>
