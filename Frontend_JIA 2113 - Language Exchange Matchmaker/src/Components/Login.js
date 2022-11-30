@@ -48,7 +48,6 @@ function Login (){
                         id: data.id
                     }).toString()
                 });
-            }
         }catch(error){
             if (error.response){
                 if (error.response.data){

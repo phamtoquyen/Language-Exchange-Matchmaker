@@ -56,7 +56,10 @@ function CreateProfile() {
   {value:"Reading", label:"Reading"},
   {value:"Sport", label: "Sport"},
   {value:"Gardening", label:"Gardening"},
-  {value:"Workout", label:"Workout"},
+  {value:"Working out", label:"Working out"},
+  {value:"Gaming", label:"Gaming"},
+  {value:"Music", label:"Music"},
+  {value:"Watching Movies", label:"Watching Movies"},
  ]
 
 
@@ -167,6 +170,7 @@ const [search] = useSearchParams();
         <h1>Set Profile</h1>
         <h6>(* indicates required fields)</h6>
         </div>
+
       {/* Calling to the methods */}
       <div className="messages">
         {errorMessage()}
