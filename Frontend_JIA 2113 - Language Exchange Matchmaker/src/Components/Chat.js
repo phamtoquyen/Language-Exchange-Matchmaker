@@ -16,11 +16,11 @@ const Chat = () => {
     const[search] = useSearchParams();
     const senderId = search.get("senderid");
     const user = handleGetUser(senderId)
-    const dispatch = useDispatch();
     const socket = useRef();
     const [sendMessage, setSendMessage] = useState(null);
     const [onlineUsers, setOnlineUsers] = useState([]);
     const [receivedMessage, setReceivedMessage] = useState(null);
+
 
     // Get the chat in chat section
     useEffect(() => {
@@ -61,11 +61,14 @@ const Chat = () => {
     );
   });
 
+   const checkOnlineStatus = (chat) => {
+      const chatMember = chat["receiverId"];
+      console.log("check chat receiver",chatMember);
+      const online = onlineUsers.find((user) => user.userId === chatMember);
+      return online ? true : false;
+   };
 
-
-
-
-    return (
+   return (
         <div className="Chat">
             {/* Left Side */}
             <div className="Left-side-chat">
@@ -81,6 +84,7 @@ const Chat = () => {
                             <Conversation
                               data={chat}
                               currentUserId={senderId}
+                              online={checkOnlineStatus(chat)}
                             />
                         </div>
                         ))}

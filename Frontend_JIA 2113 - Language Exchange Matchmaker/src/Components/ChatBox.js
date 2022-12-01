@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import "./ChatBox.css";
 import profile from "../Styles/profilepic.jpg";
 import { format } from "timeago.js";
-import InputEmoji from 'react-input-emoji'
+import InputEmoji from 'react-input-emoji';
+import { useRef } from "react";
 
 
 const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage }) => {
@@ -14,6 +15,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage }) => {
     const handleChange = (newMessage)=> {
         setNewMessage(newMessage)
     }
+    const scroll = useRef();
 
     // fetching data for header
     useEffect(() => {
@@ -66,10 +68,11 @@ const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage }) => {
         text: newMessage,
         chatId: chat.id,
   }
+
   const receiverId = chat["receiverId"];
   console.log(receiverId);
   // send message to socket server
-  setSendMessage({...messages, receiverId})
+  setSendMessage([...messages, receiverId])
       // send message to database
       try {
             const data = await addMessage(message);
@@ -80,6 +83,11 @@ const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage }) => {
             console.log("error")
       }
   }
+
+  // Always scroll to last Message
+   useEffect(()=> {
+      scroll.current?.scrollIntoView({ behavior: "smooth" });
+   },[messages])
 
    return (
     <>
@@ -114,7 +122,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage }) => {
             <div className="chat-body" >
             {messages.map((message) => (
                 <>
-                  <div
+                  <div ref={scroll}
                     className={
                       message.senderId === currentUser
                         ? "message own"
@@ -134,7 +142,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage }) => {
               value={newMessage}
               onChange={handleChange}
               />
-              <div className="send-button button" onClick = {handleSend}>Send</div>
+              <button className="send-button" onClick = {handleSend}>Send</button>
              </div>
         </>
         ) : (

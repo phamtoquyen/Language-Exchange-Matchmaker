@@ -12,11 +12,14 @@ import LogoutConfirmationPage from '../Components/LogoutConfirmationPage';
 import Chat from '../Components/Chat';
 import { Provider } from "react-redux";
 import store from "../store/ReduxStore";
+import { useDispatch } from "react-redux";
 
-function App() {
+const App = () => {
+
+
   return (
     <div className="App">
-    <Provider store={store}>
+
       <Router>
        <Routes>
           <Route path ="/" element ={<Home />}/>
@@ -28,7 +31,7 @@ function App() {
           <Route path ="/Chat" element ={<Chat/>}/>
        </Routes>
       </Router>
-    </Provider>
+
     </div>
   );
 }
