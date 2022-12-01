@@ -7,7 +7,7 @@ import { format } from "timeago.js";
 import InputEmoji from 'react-input-emoji'
 
 
-function ChatBox({ chat, currentUser, setSendMessage}) {
+const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage }) => {
     const [userData, setUserData] = useState(null)
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
@@ -37,7 +37,8 @@ function ChatBox({ chat, currentUser, setSendMessage}) {
     const fetchMessages = async () => {
       try {
         const data = await getMessages(chat.id);
-        setMessages([data.chatsData]);
+        console.log(data)
+        setMessages(data.chatsData);
       } catch (error) {
         console.log(error);
       }
@@ -46,33 +47,39 @@ function ChatBox({ chat, currentUser, setSendMessage}) {
     if (chat !== null) fetchMessages();
   }, [chat]);
 
+  // Receive Message from parent component
+  useEffect(()=> {
+
+    console.log("Message Arrived: ", receivedMessage)
+    if (receivedMessage && receivedMessage.chatId === chat.id) {
+      setMessages([...messages, receivedMessage]);
+    }
+
+  },[receivedMessage, chat, messages])
+
 
     // Send Message
-    const handleSend = async(e)=> {
+  const handleSend = async(e)=> {
       e.preventDefault()
       const message = {
         senderId : currentUser,
         text: newMessage,
         chatId: chat.id,
-    }
-
-//    const receiverId = chat[receiverId];
-//    console.log(receiverId);
-//      // send message to socket server
-//    setSendMessage({...message, receiverId})
-      // send message to database
-    try {
-        const data = await addMessage(message);
-        setMessages([...messages, data.messageData]);
-        setNewMessage("");
-        console.log("Test if it up to here!!!")
-    }
-    catch
-     {
-        console.log("error")
-     }
   }
-
+  const receiverId = chat["receiverId"];
+  console.log(receiverId);
+  // send message to socket server
+  setSendMessage({...messages, receiverId})
+      // send message to database
+      try {
+            const data = await addMessage(message);
+            setMessages([...messages, data.messageData]);
+            setNewMessage("");
+        }
+      catch{
+            console.log("error")
+      }
+  }
 
    return (
     <>

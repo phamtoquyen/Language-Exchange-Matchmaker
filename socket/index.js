@@ -17,6 +17,16 @@ io.on("connection", (socket) => {
     // send all active users to new user
     io.emit("get-users", activeUsers);
   });
+    // send message to a specific user
+  socket.on("send-message", (data) => {
+    const { receiverId } = data;
+    const user = activeUsers.find((user) => user.userId === receiverId);
+    console.log("Sending from socket to :", receiverId)
+    console.log("Data: ", data)
+    if (user) {
+        io.to(user.socketId).emit("recieve-message", data);
+    }
+  });
 
   socket.on("disconnect", () => {
     // remove user from active users

@@ -10,10 +10,13 @@ import CreateProfile from '../Components/CreateProfile';
 import Dashboard from '../Components/Dashboard';
 import LogoutConfirmationPage from '../Components/LogoutConfirmationPage';
 import Chat from '../Components/Chat';
+import { Provider } from "react-redux";
+import store from "../store/ReduxStore";
 
 function App() {
   return (
     <div className="App">
+    <Provider store={store}>
       <Router>
        <Routes>
           <Route path ="/" element ={<Home />}/>
@@ -23,10 +26,9 @@ function App() {
           <Route path ="/Dashboard" element ={<Dashboard />}/>
           <Route path ="/LogoutConfirmation" element ={<LogoutConfirmationPage />}/>
           <Route path ="/Chat" element ={<Chat/>}/>
-
        </Routes>
       </Router>
-    
+    </Provider>
     </div>
   );
 }
