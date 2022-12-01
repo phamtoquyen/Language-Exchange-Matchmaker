@@ -16,6 +16,8 @@
     flex-direction: column;
     gap: 0.5rem;
     padding: 1.5rem;
+    overflow-y:scroll;
+    overflow:auto;
 }
 
 .message {
@@ -78,4 +80,15 @@
 .chat-sender>div{
     height: 70%;
     padding: 0px 15px 0px 15px;
+}
+.send-button {
+background:linear-gradient(135deg, rgba(34,193,195,1) 0%,     rgba(253,187,45,1) 100%);
+    width: 15%;
+    margin: 10px 0;
+    height: 35px;
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    color: white;
+    float: right;
 }

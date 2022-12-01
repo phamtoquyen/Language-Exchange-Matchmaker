@@ -134,7 +134,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage }) => {
               value={newMessage}
               onChange={handleChange}
               />
-              <div className="send-button button" onClick = {handleSend}>Send</div>
+              <button className="send-button" onClick = {handleSend}>Send</button>
              </div>
         </>
         ) : (
