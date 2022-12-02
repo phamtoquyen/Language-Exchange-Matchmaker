@@ -8,7 +8,7 @@ import InputEmoji from 'react-input-emoji';
 import { useRef } from "react";
 
 
-const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage }) => {
+const ChatBox = ({chat, currentUser, setSendMessage,  receivedMessage}) => {
     const [userData, setUserData] = useState(null)
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
@@ -39,7 +39,6 @@ const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage }) => {
     const fetchMessages = async () => {
       try {
         const data = await getMessages(chat.id);
-        console.log(data)
         setMessages(data.chatsData);
       } catch (error) {
         console.log(error);
@@ -113,7 +112,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage }) => {
                 <hr
                 style={{
                   width: "95%",
-                  border: "0.1px solid #ececec",
+                  border: "0.1px solid #bebebe",
                   marginTop: "20px",
                 }}
               />

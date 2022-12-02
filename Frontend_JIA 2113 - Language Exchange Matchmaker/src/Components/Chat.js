@@ -14,28 +14,27 @@ const Chat = () => {
     const [chats, setChats] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
     const[search] = useSearchParams();
-    const senderId = search.get("senderid");
-    const user = handleGetUser(senderId)
+    const senderId = search.get("senderid"); //login user_id
+    const user = handleGetUser(senderId); //login user info
     const socket = useRef();
     const [sendMessage, setSendMessage] = useState(null);
     const [onlineUsers, setOnlineUsers] = useState([]);
     const [receivedMessage, setReceivedMessage] = useState(null);
 
 
-    // Get the chat in chat section
+    // Get the chats which come from current login user to display as chat lists
     useEffect(() => {
         const getChats = async () => {
             try {
+            //data = object of ChatModel {chatId, senderId, receiverId}
                 const data  = await handleChatApi(senderId);
                 setChats(data.chatsData);
-
             } catch (error) {
                 console.log(error);
             }
         };
         getChats();
     }, [senderId]);
-
      // Connect to Socket.io
     useEffect(() => {
         socket.current = io("ws://localhost:8800");
@@ -63,7 +62,6 @@ const Chat = () => {
 
    const checkOnlineStatus = (chat) => {
       const chatMember = chat["receiverId"];
-      console.log("check chat receiver",chatMember);
       const online = onlineUsers.find((user) => user.userId === chatMember);
       return online ? true : false;
    };
@@ -82,8 +80,8 @@ const Chat = () => {
                         }}
                         >
                             <Conversation
-                              data={chat}
-                              currentUserId={senderId}
+                              data={chat} // send prop data to Conversation - data
+                              currentUserId={senderId} // user_id that currently login and send as prop to Conversation - currentUserId
                               online={checkOnlineStatus(chat)}
                             />
                         </div>
