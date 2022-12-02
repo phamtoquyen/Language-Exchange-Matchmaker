@@ -79,12 +79,8 @@
     height: 70%;
     padding: 0px 15px 0px 15px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> ba90c2a7c2029f56ba3da8ee2ed72763251e6bc7
-.send-button {
-background:linear-gradient(135deg, rgba(34,193,195,1) 0%,     rgba(253,187,45,1) 100%);
+.send-button{
+    background:linear-gradient(135deg, rgba(34,193,195,1) 0%,     rgba(253,187,45,1) 100%);
     width: 15%;
     margin: 10px 0;
     height: 35px;
