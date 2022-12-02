@@ -8,7 +8,7 @@ import InputEmoji from 'react-input-emoji';
 import { useRef } from "react";
 
 
-const ChatBox = ({chat, currentUser, setSendMessage,  receivedMessage}) => {
+const ChatBox = ({chat, currentUser, setSendMessage, receivedMessage}) => {
     const [userData, setUserData] = useState(null)
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
@@ -50,9 +50,7 @@ const ChatBox = ({chat, currentUser, setSendMessage,  receivedMessage}) => {
 
   // Receive Message from parent component
   useEffect(()=> {
-
-    console.log("Message Arrived: ", receivedMessage)
-    if (receivedMessage && receivedMessage.chatId === chat.id) {
+    if (receivedMessage !== null && receivedMessage.chatId === chat.id) {
       setMessages([...messages, receivedMessage]);
     }
 
