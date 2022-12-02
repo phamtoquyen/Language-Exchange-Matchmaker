@@ -13,45 +13,50 @@
 * Database is not on a server hence there are currently multiple copies.
 * Multiple People can be registered with the same people.
 
-## Version 0.2.0
-### New Features
-* Complete Login and Registration feature.
-* Implemented security authentication registration & Login.
-* UI for createProfile Page
-* Updated DataBase Schema
 
-### Bug Fixes
-* Frontend and backend are connected
+# Install Guide Language Exchange MatchMaker 1.0 
+## PRE-REQUISITES 
+* You must have an IDE like visual studio installed and SQL workbench configured before proceeding. See 
 
-### Known Issues
-* Database is not on a server hence there are currently multiple copies.
-* Some UI design needs to be improved.
-* createProfile Page is not connected to the Backend
+https://visualstudio.microsoft.com/downloads/ 
 
-## Version 0.3.0
-### New Features
-* Dashboard page.
-* Logout feature.
-* Restructured Database.
-* Establish Matching algorithm on Backend.
+https://dev.mysql.com/downloads/workbench/ 
+## DOWNLOAD 
+* https://github.com/phamtoquyen/JIA-2113---Language-Exchange-Matchmaker.git 
 
-### Bug Fixes
-* Connected CreateProfile page to backend
+Dowload zip file from there 
+## DEPENDENCIES 
+open the file in VS/ Intellij and terminal (we can install all the dependencies with ‘npm install’ command in terminal) 
 
-### Known Issues
-* Database is not on a server hence there are currently multiple copies.
-* Some UI design needs to be improved.
-* Login component is class component, currently having issue with wrapping that into function to redirect between routes.
-* Not having shared database to test matching algorithm.
+For Backend dependencies (terminal commands): 
+* cd Backend--JIA-2113---Language-Exchange-Matchmaker 
+* npm install 
 
-## Version 0.4.0
-### New Features
-* HelpPage
+For Frontend dependecies (terminal commands): 
 
-### Bug Fixes
-* RESTFull API for MeasageModel
+* cd Frontend_JIA 2113 - Language Exchange Matchmaker 
+* npm install  
 
-### Known Issues
-* In sequelize, datatype of Array is not supported using mySQL.
-* Redesigning MessageMode, and chatModel with associations.
+To migrate the database 
+* cd Backend--JIA-2113---Language-Exchange-Matchmaker/src 
+* npx sequelize-cli db:migrate 
+ 
+## BUILD 
+No build is necessary for this app.
+## INSTALLATION 
+No additional file needs to be added 
+## RUNNING APPLICATION
+Backend
+* cd Backend--JIA-2113---Language-Exchange-Matchmaker 
+* npm start 
+Frontend: 
+* cd Frontend_JIA 2113 - Language Exchange Matchmaker 
+* npm start
 
+# Tutorial Resources: 
+
+* https://sequelize.org/docs/v6/other-topics/migrations/ 
+* https://reactjs.org/tutorial/tutorial.html 
+* https://www.bezkoder.com/react-node-express-mysql/ 
+
+ 
