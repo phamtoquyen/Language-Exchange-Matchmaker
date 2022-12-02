@@ -11,21 +11,21 @@ let createFriends = async (req, res) => {
 }
 
 let findFriends = async (req, res) => {
-    let userId = req.params.userId
-    console.log("check userId >>>>", userId)
-    let messageData = await friendsService.handleFindFriends(userId)
+    let user1_ID = req.params.user1_ID
+    console.log("check friends for userID >>>>", userId)
+    let messageData = await friendsService.handleFindFriends(user1_ID)
     return res.status(200).json({
         message: messageData.errMessage,
         chatsData: messageData.data? messageData.data : {}
     })
 }
 
-let findChat = async (req, res) => {
-    let senderId = req.params.senderId
-    let receiverId = req.params.receiverId
+let findFriend = async (req, res) => {
+    let user1_ID = req.params.user1_ID
+    let user2_ID = req.params.user2_ID
 
-    console.log("check userId >>>>", senderId, receiverId)
-    let messageData = await chatService.handleFindChat(senderId, receiverId)
+    console.log("check if two users are friends >>>>", user1_ID, user2_ID)
+    let messageData = await friendsService.handleFindFriend(user1_ID, user2_ID)
     return res.status(200).json({
         message: messageData.errMessage,
         chatsData: messageData.data? messageData.data : {}
@@ -34,7 +34,7 @@ let findChat = async (req, res) => {
 
 
 module.exports = {
-    createChat: createChat,
-    findChats: findChats,
-    findChat: findChat
+    createFriends: createFriends,
+    findFriends: findFriends,
+    findFriend: findFriend
 }
