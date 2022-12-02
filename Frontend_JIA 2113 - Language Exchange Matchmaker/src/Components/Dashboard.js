@@ -19,14 +19,16 @@ function Dashboard()  {
   const [FName, setFName] = useState();
   const [LName, setLName] = useState();
   const [email,setEmail] = useState();
+  const[friendids, setfriendids] = useState([]);
+  const[name, setName] = useState([]);
   const navigate = useNavigate();
   // it should be coming from friend list database a list of id and names to show
   
   
   
-  let friendids = [1, 2, 3, 4, 5];
-  let name = ["prit","quyen","maisa","akshar","pratham"];
- 
+  //let friendids = [];
+  //let name = ["prit","quyen","maisa","akshar","pratham"];
+  let names = [] 
   
   //console.log(data);
   const getInfo = async(e) => {
@@ -37,8 +39,15 @@ function Dashboard()  {
         setEmail(data.user.email);
         console.log("start")
         let lists = await handleFindFriendsApi(id);
+        setfriendids(lists.chatsData)
+        console.log(friendids.length)
+        for(let i = 0; i < friendids.length; i++) {
+          let friend = await handleUserDashBoardApi(friendids[i].user2_ID);
+          names.push(friend.user.firstName)
+          
+        }
+        setName(names)
 
-        console.log(lists.chatsData)
         }
     catch(error){
       console.log(error);
@@ -78,12 +87,12 @@ function Dashboard()  {
   });
   }
   let array = [];
-  for(let i = 0; i < 5; i++) {
+  for(let i = 0; i < friendids.length; i++) {
     array.push(
       <div className='left'>
         <img src={profile} alt="DP" className ="leftpic" />
         <text className='text'>{name[i]}</text>
-        <Button className="btn-chat" onClick={event => handleChat(event,i)}>chat</Button>
+        <Button className="btn-chat" onClick={event => handleChat(event,friendids[i].user2_ID)}>chat</Button>
       </div>
     );
   }
