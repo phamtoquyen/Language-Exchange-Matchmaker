@@ -48,8 +48,9 @@ No additional file needs to be added
 ## RUNNING APPLICATION
 Backend
 * cd Backend--JIA-2113---Language-Exchange-Matchmaker 
-* npm start 
-Frontend: 
+* npm start
+
+Frontend
 * cd Frontend_JIA 2113 - Language Exchange Matchmaker 
 * npm start
 
