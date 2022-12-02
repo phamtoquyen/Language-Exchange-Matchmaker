@@ -8,6 +8,7 @@ import { createSearchParams, useSearchParams, useNavigate } from "react-router-d
 
 import Button from 'react-bootstrap/Button';
 import { handleUserDashBoardApi } from '../Services/dashboardService';
+import { handleFindFriendsApi } from '../Services/findFriendsService';
 
 
 function Dashboard()  {
@@ -20,6 +21,9 @@ function Dashboard()  {
   const [email,setEmail] = useState();
   const navigate = useNavigate();
   // it should be coming from friend list database a list of id and names to show
+  
+  
+  
   let friendids = [1, 2, 3, 4, 5];
   let name = ["prit","quyen","maisa","akshar","pratham"];
  
@@ -31,7 +35,10 @@ function Dashboard()  {
         setFName(data.user.firstName);
         setLName(data.user.lastName);
         setEmail(data.user.email);
-       
+        console.log("start")
+        let lists = await handleFindFriendsApi(id);
+
+        console.log(lists.chatsData)
         }
     catch(error){
       console.log(error);

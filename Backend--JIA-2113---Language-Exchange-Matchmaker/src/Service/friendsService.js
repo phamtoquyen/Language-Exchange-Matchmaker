@@ -30,6 +30,7 @@ let handleFindFriends = (user1_ID) => {
                     where: {[Op.or]: [{user1_ID : user1_ID}]
                     }
             });
+            console.log("friends"+ friendsModels)
             friendsData.errMessage = 'Friends found!';
             friendsData.data = friendsModels;
             resolve(friendsData);
