@@ -1,14 +1,14 @@
 import db from '../models/index';
 
-let checkFriends = (id, native_language, target_language) => {
+let checkFriends = (native_language, target_language) => {
     return new Promise (async (resolve, reject) => {
         try{
             let user = await db.UserProfile.findAll({
-                attributes: ['id'], // this would be ideally be name
+                // attributes: ['id'],
                 where: {native_language : target_language, target_language : native_language},
                 order: {limit: 5}
             })
-            console.log(user)
+            return (user)
             if (user){
                 resolve(true)
             }else {
