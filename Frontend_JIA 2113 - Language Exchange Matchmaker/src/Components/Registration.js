@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import React from "react";
 import './Registration.css'; 
-import { useNavigate } from "react-router-dom";
 
 import Button from 'react-bootstrap/Button';
 import { handleRegisterApi } from '../Services/userService';
-
+import { createSearchParams, useNavigate } from "react-router-dom";
 
 function Registration() {
     // States for registration
-
+  let data;
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const navigate = useNavigate();
@@ -24,6 +23,8 @@ function Registration() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
  
+  
+
   // Handling the name change
   const handleFirstName = (e) => {
     setFirstName(e.target.value);
@@ -48,27 +49,33 @@ function Registration() {
  
   // Handling the form submission
   const handleSubmit = async(e) => {
+    console.log(data)
     e.preventDefault();
     if (firstName === '' || lastName === '' || email === '' || password === '') {
       setError(true);
+      setErrMsg("enter all the fields");
     } else {
       setError(false);
-      navigate("/CreateProfile");
-      
-    }
+      //navigate("/CreateProfile");  
     setErrMsg("");
     try{
-      
+      console.log('Sending Register: ' + firstName + lastName+ email+ password);
       let data = await handleRegisterApi(firstName,lastName,email, password);
       console.log("fj");
       if (data && data.errCode !== 0){
           setSubmitted(true);
+          setError(true);
           setErrMsg(data.message);
       }
-      if (data && data.errCode === 0){
+      if (data && data.errorCode === 0){
+        console.log("here");
       // todo when login successfull!
-      setSubmitted(true);
-      console.log("login successull!")
+      navigate({
+        pathname: "/CreateProfile",
+        search: createSearchParams({
+            id: data.id
+        }).toString()
+    });
       }
   }catch(error){
       if (error.response){
@@ -79,20 +86,10 @@ function Registration() {
           }
       }
   }
+  }
   };
  
-  // Showing success message
-  const successMessage = () => {
-    return (
-      <div
-        className="success"
-        style={{
-          display: submitted ? '' : 'none',
-        }}>
-        <h1>{errMsg}</h1>
-      </div>
-    );
-  };
+  
  
   // Showing error message if error is true
   const errorMessage = () => {
@@ -102,22 +99,24 @@ function Registration() {
         style={{
           display: error ? '' : 'none',
         }}>
+        <h1>{errMsg}</h1>
+
         <h1>Please enter all the fields!</h1>
       </div>
     );
   };
  
   return (
+    <div>
     <div className="screen-Background">
       <div className="screen-Container">
+        <div className="screen-Content">
         <h1>User Registration</h1>
- 
+        
       {/* Calling to the methods */}
       <div className="messages">
         {errorMessage()}
-        {successMessage()}
       </div>
- 
       <form>
         <div className="d-grid gap-2">
         {/* Labels and inputs for form data */}
@@ -163,6 +162,8 @@ function Registration() {
         </div>
       </form>
       </div>
+      </div>
+    </div>
     </div>
   );
     
