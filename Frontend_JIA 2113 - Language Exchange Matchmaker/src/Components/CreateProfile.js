@@ -6,16 +6,20 @@ import Select from "react-select";
 
 import Button from 'react-bootstrap/Button';
 
+import { handleProfileCreationAPI } from '../Services/userService';
+import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
+
 
 function CreateProfile() {
     // States for registration
-  const [language, setLanguage] = useState('');
+  const [nativeLanguage, setNativeLanguage] = useState('');
   const [targetLanguage, setTargetLanguage] = useState('');
-  const [level, setLevel] = useState('');
+  const [targetLanguageProficiency, setTargetLanguageProficiency] = useState('');
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
   const [profession, setProfession] = useState('');
   const [hobby, setHobby] = useState('');
+  const [errMsg ,setErrMsg] = useState('');
   
   // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
@@ -30,7 +34,7 @@ function CreateProfile() {
   {value: "English", label: "English"},
   {value: "Korean", label: "Korean"},
  ]
- const Level = [
+ const TargetLanguageProficiency = [
   {value: "Beginner", label: "Beginner"},
   {value: "Intermediate", label: "Intermediate"},
   {value: "Fluent", label: "Fluent"},
@@ -58,44 +62,75 @@ function CreateProfile() {
 
 
 
- const handleLanguage = (selectedOption) => {
-  setLanguage(selectedOption);
+ const handleNativeLanguage = (selectedOption) => {
+  console.log(selectedOption.value)
+  setNativeLanguage(selectedOption.value);
  };
 
  const handleTargetLanguage = (selectedOption) => {
-  setTargetLanguage(selectedOption);
+  setTargetLanguage(selectedOption.value);
  };
- const handleLevel = (selectedOption) => {
-  setLevel(selectedOption);
+ const handleTargetLanguageProficiency = (selectedOption) => {
+  setTargetLanguageProficiency(selectedOption.value);
  };
 
  const handleAge = (e) => {
-  setAge(e);
+  setAge(e.target.value);
  };
 
  const handleGender = (selectedOption) => {
-  setGender(selectedOption);
+  setGender(selectedOption.value);
  };
  const handleProfession = (selectedOption) => {
-  setProfession(selectedOption);
+  setProfession(selectedOption.value);
  };
  const handleHobby = (selectedOption) => {
-  setHobby(selectedOption);
+  setHobby(selectedOption.value);
  };
-
-
-
+const [search] = useSearchParams();
+ const id = search.get("id");
+ console.log(id)
+ const navigate = useNavigate();
   // Handling the form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (language === '' || targetLanguage === '' || level === '' || age === '' || profession === '') {
-      console.log(age);
+    if (nativeLanguage === '' || targetLanguage === '' || targetLanguageProficiency === '' || age === '' || profession === '') {
       setError(true);
     } else {
       setSubmitted(true);
       setError(false);
-      
     }
+    setError("");
+    try{
+      console.log('Sending create: ' + nativeLanguage + targetLanguage+ targetLanguageProficiency+ age+ gender+ profession+ hobby)
+      let data = await handleProfileCreationAPI(nativeLanguage, targetLanguage, targetLanguageProficiency, age, gender, profession, hobby);
+      console.log('Create done')
+
+      if (data && data.errCode !== 0){
+          setSubmitted(true);
+          setErrMsg(data.message);
+      }
+      if (data && data.errCode === 0){
+      // todo when login successfull!
+      setSubmitted(true);
+      console.log("Profile Creation Successful!")
+      }
+    } catch(error){
+      if (error.response){
+        if (error.response.data){
+                setErrMsg(error.response.data.message)
+                console.log(errMsg)
+    }
+  }
+    }
+    
+  
+    navigate({
+        pathname: "/Dashboard",
+        search: createSearchParams({
+            id: id
+        }).toString()
+    });
   };
  
   // Showing success message
@@ -127,8 +162,11 @@ function CreateProfile() {
   return (
     <div className="screen-Background">
       <div className="screen-Container">
+      <div className="screen-Content">
+        <div>
         <h1>Set Profile</h1>
- 
+        <h6>(* indicates required fields)</h6>
+        </div>
       {/* Calling to the methods */}
       <div className="messages">
         {errorMessage()}
@@ -141,7 +179,7 @@ function CreateProfile() {
 
         <div className='form-group'>
         <label className="label">Native Language*</label>
-        <Select options={NativeLanguage} onChange={handleLanguage}/>
+        <Select options={NativeLanguage} onChange={handleNativeLanguage}/>
         </div>
 
         <div className='form-group'>
@@ -151,7 +189,7 @@ function CreateProfile() {
 
         <div className='form-group'>
         <label className="label">Level of Target Language*</label>
-        <Select options={Level} onChange={handleLevel}/>
+        <Select options={TargetLanguageProficiency} onChange={handleTargetLanguageProficiency}/>
         </div>
 
         <div className='form-group'>
@@ -184,6 +222,7 @@ function CreateProfile() {
           Create Profile
         </Button>
       </form>
+      </div>
       </div>
     </div>
   );
