@@ -13,6 +13,7 @@ import Chat from '../Components/Chat';
 import { Provider } from "react-redux";
 import store from "../store/ReduxStore";
 import { useDispatch } from "react-redux";
+import HelpPage from '../Components/HelpPage';
 
 const App = () => {
 
@@ -29,6 +30,7 @@ const App = () => {
           <Route path ="/Dashboard" element ={<Dashboard />}/>
           <Route path ="/LogoutConfirmation" element ={<LogoutConfirmationPage />}/>
           <Route path ="/Chat" element ={<Chat/>}/>
+          <Route path ="/HelpPage" element ={<HelpPage/>}/>
        </Routes>
       </Router>
 
