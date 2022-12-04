@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import {handleGetUser, getMessages,  addMessage} from '../Services/userService';
 import { useEffect } from "react";
+import { createSearchParams, useSearchParams, useNavigate } from "react-router-dom";
+
 import "./ChatBox.css";
 import profile from "../Styles/profilepic.jpg";
 import { format } from "timeago.js";
@@ -12,15 +14,21 @@ const ChatBox = ({chat, currentUser, setSendMessage, receivedMessage}) => {
     const [userData, setUserData] = useState(null)
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
+    const senderId = currentUser
     const handleChange = (newMessage)=> {
         setNewMessage(newMessage)
     }
     const scroll = useRef();
-
     // fetching data for header
     useEffect(() => {
           //Change operator since chat is not always avail
-          const userId = chat != null ? chat["receiverId"] : null
+          const userId = null
+          if (senderId == chat["receiverId"]) {
+            userId = chat != null ? chat["senderID"] : null
+          } else {
+            userId = chat != null ? chat["receiverID"] : null
+          }
+
           const getUserData = async () => {
             try {
               const data  = await handleGetUser(userId)

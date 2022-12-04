@@ -4,7 +4,7 @@ import "./Chat.css";
 import Conversation from "./Conversation";
 import ChatBox from "./ChatBox";
 import LogoSearch from "./LogoSearch";
-import { createSearchParams, useSearchParams, useNavigate } from "react-router-dom";
+import { createSearchParams, useSearchParams, useNavigate, Navigate } from "react-router-dom";
 import {handleChatApi, handleGetUser} from '../Services/userService';
 import { io } from "socket.io-client";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +20,6 @@ const Chat = () => {
     const [sendMessage, setSendMessage] = useState(null);
     const [onlineUsers, setOnlineUsers] = useState([]);
     const [receivedMessage, setReceivedMessage] = useState(null);
-
 
     // Get the chats which come from current login user to display as chat lists
     useEffect(() => {
