@@ -56,7 +56,7 @@ let handleProfileCreation = async (req, res) => {
     let hobby = req.body.hobby;
     // Call handleProfileCreation to have the value of userData
     let userData = await userService.handleProfileCreation(native_language, target_language, target_language_proficiency, age, gender, profession, hobby)
-    console.log(userData)
+
     return res.status(200).json({
          errorCode: userData.errCode,
          message: userData.errMessage,
@@ -64,21 +64,8 @@ let handleProfileCreation = async (req, res) => {
     })
 }
 
-let handleGetUser = async (req, res) => {
-    const userId = req.params.userId
-    if (userId) {
-        let userData = await userService.getUserInfoById(userId)
-        return res.send(userData)
-
-    }else {
-        return res.send("User not found !");
-    }
-}
-
-
 module.exports = {
     handleLogin: handleLogin,
     handleRegister: handleRegister,
-    handleProfileCreation: handleProfileCreation,
-    handleGetUser : handleGetUser
+    handleProfileCreation: handleProfileCreation
 }

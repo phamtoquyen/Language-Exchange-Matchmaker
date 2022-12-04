@@ -7,7 +7,7 @@
 //  return res.render('index.ejs', {dataUser: rows})
 //}
 
-//import db from '../models/index';
+import db from '../models/index';
 let getHomePage = async(req, res) => {
     try{
         let data = await db.Users.findAll();

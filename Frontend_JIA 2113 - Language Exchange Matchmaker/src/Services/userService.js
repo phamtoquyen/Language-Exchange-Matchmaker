@@ -11,25 +11,5 @@ const handleRegisterApi= (firstName, lastName, Email, userPassword) => {
 const handleProfileCreationAPI = (native_language, target_language, target_language_proficiency, age, gender, profession, hobby) => {
     return axios.post('/CreateProfile', {native_language: native_language, target_language: target_language, target_language_proficiency: target_language_proficiency, age: age, gender: gender, profession: profession, hobby: hobby}) ;
 }
-//return
-const handleChatApi = (senderId) => {
-    return axios.get(`/Chats/${senderId}`)
-}
 
-const handleGetUser = (receiverId) => {
-    return axios.get(`/api/getUser/${receiverId}`)
-}
-
-const getMessages = (chatId) => {
-    return axios.get(`/Message/${chatId}`)
-}
-
-const addMessage = (data) => {
-    return axios.post(`/Message/`, data)
-}
-
-
-
-
-
-export {handleLoginApi, handleRegisterApi, handleProfileCreationAPI, handleChatApi, handleGetUser, getMessages, addMessage}
+export {handleLoginApi, handleRegisterApi, handleProfileCreationAPI}
