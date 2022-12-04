@@ -53,12 +53,11 @@ function Dashboard()  {
   });
 
   }
-  const handleChat = async(e,p) => {
+  const handleChat = async(e) => {
     navigate({
       pathname: "/chat",
       search: createSearchParams({
-          senderid: id,
-          receiverid: p
+          senderid: id
       }).toString()
   });
   }
@@ -76,7 +75,7 @@ function Dashboard()  {
       <div className='left'>
         <img src={profile} alt="DP" className ="leftpic" />
         <text className='text'>{name[i]}</text>
-        <Button className="btn-chat" onClick={event => handleChat(event,i)}>chat</Button>
+        
       </div>
     );
   }
@@ -95,7 +94,7 @@ function Dashboard()  {
         <Button className="btn-Screen">
           Find Friend
         </Button>
-       
+        <Button className="btn-chat" onClick={handleChat}>chat</Button>
         <Button className="btn-Screen" onClick={Logout}>
           Logout
         </Button>
