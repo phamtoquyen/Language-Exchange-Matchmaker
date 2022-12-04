@@ -114,15 +114,7 @@ let checkUserEmail = (userEmail) => {
 let handleProfileCreation = (native_language, target_language, target_language_proficiency, age, gender, profession, hobby) => {
     return new Promise(async (resolve, reject) => {
         try{
-            // Return obj to Controller and the Controller will response to the user
             let userData = {};
-            
-                /*userDate object {
-                errCode: 1
-                errMessage: "username not exist"
-                }
-                */
-            console.log("hi");
 
             let userProfile = await db.UserProfile.create({
                 id: user_id,
@@ -137,17 +129,31 @@ let handleProfileCreation = (native_language, target_language, target_language_p
             console.log("hi");
             userData.errCode = 0;
             userData.errMessage = 'Profile Successfully Created!';
-            
-
-            
             resolve(userData);
-    
         }catch(e){
             reject(e)
         }
     })
 }
 
+let getUserInfoById = (userId) => {
+    return new Promise (async (resolve, reject) => {
+        try{
+            let user = await db.UserAccount.findOne({
+                where: {id: userId}
+            })
+            console.log(userId)
+            if (user){
+                resolve(user);
+            }else {
+                resolve([]);
+            }
+        }catch(e){
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
-handleUserLogin, checkUserEmail, handleUserRegister, handleProfileCreation
+handleUserLogin, checkUserEmail, handleUserRegister, handleProfileCreation, getUserInfoById
 }
