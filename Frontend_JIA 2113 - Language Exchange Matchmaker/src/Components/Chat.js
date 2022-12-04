@@ -14,21 +14,21 @@ const Chat = () => {
     const [chats, setChats] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
     const[search] = useSearchParams();
-    const senderId = search.get("senderid");
-    const user = handleGetUser(senderId)
-    const dispatch = useDispatch();
+    const senderId = search.get("senderid"); //login user_id
+    const user = handleGetUser(senderId); //login user info
     const socket = useRef();
     const [sendMessage, setSendMessage] = useState(null);
     const [onlineUsers, setOnlineUsers] = useState([]);
     const [receivedMessage, setReceivedMessage] = useState(null);
 
-    // Get the chat in chat section
+
+    // Get the chats which come from current login user to display as chat lists
     useEffect(() => {
         const getChats = async () => {
             try {
+            //data = object of ChatModel {chatId, senderId, receiverId}
                 const data  = await handleChatApi(senderId);
                 setChats(data.chatsData);
-
             } catch (error) {
                 console.log(error);
             }
@@ -43,7 +43,7 @@ const Chat = () => {
         socket.current.on("get-users", (users) => {
           setOnlineUsers(users);
         });
-    }, [user, senderId]);
+    }, [user]);
 
     // Send Message to socket server
     useEffect(() => {
@@ -54,18 +54,19 @@ const Chat = () => {
   // Get the message from socket server
   useEffect(() => {
     socket.current.on("recieve-message", (data) => {
-      console.log(data)
       setReceivedMessage(data);
-    }
+    });
 
-    );
-  });
+  }, []);
 
+   const checkOnlineStatus = (chat) => {
+      const chatMember = chat["receiverId"];
+      console.log(onlineUsers);
+      const online = onlineUsers.find((user) => user.userId == chatMember);
+      return online ? true : false;
+   };
 
-
-
-
-    return (
+   return (
         <div className="Chat">
             {/* Left Side */}
             <div className="Left-side-chat">
@@ -79,8 +80,9 @@ const Chat = () => {
                         }}
                         >
                             <Conversation
-                              data={chat}
-                              currentUserId={senderId}
+                              data={chat} // send prop data to Conversation - data
+                              currentUserId={senderId} // user_id that currently login and send as prop to Conversation - currentUserId
+                              online={checkOnlineStatus(chat)}
                             />
                         </div>
                         ))}

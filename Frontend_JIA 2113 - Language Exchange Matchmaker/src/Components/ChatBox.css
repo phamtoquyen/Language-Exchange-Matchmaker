@@ -1,5 +1,5 @@
 .ChatBox-container {
-    background: var(--cardColor);
+    background:  #FAFAFA;
     border-radius: 1rem;
     display: grid;
     grid-template-rows: 14vh 60vh 13vh;
@@ -21,7 +21,7 @@
 }
 
 .message {
-   float: right;
+  float: right;
   background: #AFF1DA;
   padding: 0.7rem;
   border-radius: 1rem 1rem 1rem 0;
@@ -34,7 +34,7 @@
 
 .message>span:nth-child(2){
     font-size: 0.7rem;
-    color: var(--textColor);
+    color: green;
     align-self: end;
 }
 
@@ -43,8 +43,6 @@
   border-radius: 1rem 1rem 0 1rem;
   background: linear-gradient(98.63deg, #24e4f0 0%, #358ff9 100%);
 }
-
-
 
 .chat-sender {
     background: white;
@@ -81,8 +79,9 @@
     height: 70%;
     padding: 0px 15px 0px 15px;
 }
-.send-button {
-background:linear-gradient(135deg, rgba(34,193,195,1) 0%,     rgba(253,187,45,1) 100%);
+
+.send-button{
+    background:linear-gradient(135deg, rgba(34,193,195,1) 0%,     rgba(253,187,45,1) 100%);
     width: 15%;
     margin: 10px 0;
     height: 35px;

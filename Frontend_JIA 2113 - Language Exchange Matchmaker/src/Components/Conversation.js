@@ -5,15 +5,15 @@ import profile from "../Styles/profilepic.jpg";
 
 
 
-
-function Conversation({data, currentUserId}) {
+//Display conversation header on the right side = name of person current user have chats with - receiverId
+const Conversation = ({data, currentUser, online}) => {
     const [userData, setUserData] = useState(null)
      useEffect(()=> {
         const userId = data["receiverId"]
         const getUserData = async ()=> {
           try
           {
-             const data =await handleGetUser(userId)
+             const data =await handleGetUser(userId) // data of receiver
              setUserData(data)
           }
           catch(error)
@@ -21,16 +21,14 @@ function Conversation({data, currentUserId}) {
             console.log(error)
           }
         }
-
         getUserData();
-     }, [])
-
+     }, [data])
 
     return (
         <>
               <div className="follower conversation">
                 <div>
-                  <div className="online-dot"></div>
+                  {online && <div className="online-dot"></div>}
                   <img
                     src={profile}
                     alt="Profile"
@@ -39,11 +37,12 @@ function Conversation({data, currentUserId}) {
                   />
                   <div className="name" style={{fontSize: '0.8rem'}}>
                     <span>{userData?.firstName} {userData?.lastName}</span>
-                    <span>Online</span>
+                    <br></br>
+                    <span style={{color : online ? "#51e200" : ""}}>{online? "Online" : "Offline"}</span>
                   </div>
                 </div>
               </div>
-              <hr style={{ width: "85%", border: "0.1px solid #ececec" }} />
+              <hr style={{ width: "100%", border: "0.2px solid #bebebe" }} />
             </>
     );
 }
