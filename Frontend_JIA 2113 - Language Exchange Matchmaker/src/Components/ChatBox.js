@@ -14,7 +14,6 @@ const ChatBox = ({chat, currentUser, setSendMessage, receivedMessage}) => {
     const [userData, setUserData] = useState(null)
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
-    const senderId = currentUser
     const handleChange = (newMessage)=> {
         setNewMessage(newMessage)
     }
@@ -22,11 +21,9 @@ const ChatBox = ({chat, currentUser, setSendMessage, receivedMessage}) => {
     // fetching data for header
     useEffect(() => {
           //Change operator since chat is not always avail
-          const userId = null
-          if (senderId == chat["receiverId"]) {
+          let userId = chat != null ? chat["receiverID"] : null
+          if (currentUser == userId) {
             userId = chat != null ? chat["senderID"] : null
-          } else {
-            userId = chat != null ? chat["receiverID"] : null
           }
 
           const getUserData = async () => {
