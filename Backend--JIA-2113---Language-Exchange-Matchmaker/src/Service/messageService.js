@@ -38,5 +38,23 @@ let handleFindMessage = (chatId) => {
     })
 }
 
+let handleFindMessages = (chatId) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            let messageData = {};
+            let messageModel = await db.MessageModel.findAll({
+                    where: {chatId: chatId}
+            });
+            messageData.errMessage = 'Find message from a sender';
+            messageData.data = messageModel;
+            resolve(messageData);
+            }
 
-module.exports = {handleMessageModel, handleFindMessage}
+        catch(e){
+            reject(e)
+        }
+    })
+}
+
+
+module.exports = {handleMessageModel, handleFindMessage, handleFindMessages}

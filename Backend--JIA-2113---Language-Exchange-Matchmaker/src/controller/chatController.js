@@ -12,7 +12,6 @@ let createChat = async (req, res) => {
 
 let findChats = async (req, res) => {
     let userId = req.params.userId
-    console.log("check userId >>>>", userId)
     let messageData = await chatService.handleFindChats(userId)
     return res.status(200).json({
         message: messageData.errMessage,
@@ -23,8 +22,6 @@ let findChats = async (req, res) => {
 let findChat = async (req, res) => {
     let senderId = req.params.senderId
     let receiverId = req.params.receiverId
-
-    console.log("check userId >>>>", senderId, receiverId)
     let messageData = await chatService.handleFindChat(senderId, receiverId)
     return res.status(200).json({
         message: messageData.errMessage,

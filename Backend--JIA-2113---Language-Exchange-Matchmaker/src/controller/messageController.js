@@ -20,7 +20,18 @@ let findMessage = async (req, res) => {
     })
 }
 
+let findMessages = async (req, res) => {
+    let userId = req.params.chatId
+    let messageData = await messageService.handleFindMessages(userId)
+    console.log(messageData)
+    return res.status(200).json({
+        message: messageData.errMessage,
+        chatsData: messageData.data? messageData.data : {}
+    })
+}
+
 module.exports = {
     addMessage: addMessage,
-    findMessage: findMessage
+    findMessage: findMessage,
+    findMessages: findMessages
 }
