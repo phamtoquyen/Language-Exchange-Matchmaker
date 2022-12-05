@@ -15,9 +15,12 @@ let initWebRoute = (app) => {
 
     // API
     router.post('/api/login', userController.handleLogin)
+    router.get('/api/getUser/:userId', userController.handleGetUser)
     router.post('/Register', userController.handleRegister)
     router.post('/CreateProfile', userController.handleProfileCreation)
     router.post('/Dashboard', dashBoardController.handleDashBoard)
+
+
     //Chat routes
     router.post('/Chat', chatController.createChat)
     router.get('/Chats/:userId', chatController.findChats)
