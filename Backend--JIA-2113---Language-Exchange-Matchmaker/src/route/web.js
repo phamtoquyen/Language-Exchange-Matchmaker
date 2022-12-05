@@ -27,7 +27,7 @@ let initWebRoute = (app) => {
     router.get('/Chat/:senderId/:receiverId', chatController.findChat)
     //Message Routes
     router.post('/Message', messageController.addMessage)
-    router.get('/Message/:chatId', messageController.findMessage)
+    router.get('/Message/:chatId', messageController.findMessages)
     return app.use('/', router);
 
 
