@@ -6,6 +6,7 @@ import userController from '../controller/userController';
 import dashBoardController from '../controller/dashBoardController';
 import messageController from '../controller/messageController';
 import chatController from '../controller/chatController';
+import friendsController from '../controller/friendsController';
 var appRoot = require('app-root-path');
 let router = express.Router();
 
@@ -19,6 +20,7 @@ let initWebRoute = (app) => {
     router.post('/Register', userController.handleRegister)
     router.post('/CreateProfile', userController.handleProfileCreation)
     router.post('/Dashboard', dashBoardController.handleDashBoard)
+    router.post('/findFriends', friendsController.findFriends)
 
 
     //Chat routes
@@ -27,7 +29,7 @@ let initWebRoute = (app) => {
     router.get('/Chat/:senderId/:receiverId', chatController.findChat)
     //Message Routes
     router.post('/Message', messageController.addMessage)
-    router.get('/Message/:chatId', messageController.findMessage)
+    router.get('/Message/:chatId', messageController.findMessages)
     return app.use('/', router);
 
 
