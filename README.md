@@ -12,6 +12,7 @@
 ### Bug Fixes
 * RESTful API created for the messageModel
 * Connected the FrontEnd pages to their respective BackEnd
+* Fixed an issue where you can see your own account as a person you could chat to 
 
 ### Known Issues
 * Refresh needed for chats to appear
