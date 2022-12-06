@@ -34,11 +34,25 @@ Dowload zip file from there
 ## DEPENDENCIES 
 open the file in VS/ Intellij and terminal (we can install all the dependencies with ‘npm install’ command in terminal) 
 
+Backend dependencies: 
+  * "@babel/core": "7.15.5",
+  *  "@babel/node": "7.15.4",
+  *  "@babel/preset-env": "7.15.6",
+  *  "app-root-path": "3.0.0",
+  *  "bcryptjs": "^2.4.3",
+  *  "body-parser": "1.19.0",
+  *  "cors": "^2.8.5",
+  *  "dotenv": "10.0.0",
+  *  "ejs": "^3.1.6",
+  *  "express": "4.17.1",
+  *  "multer": "1.4.3",
+  *  "mysql2": "2.3.0",
+  *  "nodemon": "^2.0.20",
+  *  "sequelize": "^6.19.0"
 For Backend dependencies (terminal commands): 
 * cd Backend--JIA-2113---Language-Exchange-Matchmaker 
 * npm install 
 
-**Dependencies Include
 
 For Frontend dependecies (terminal commands): 
 
