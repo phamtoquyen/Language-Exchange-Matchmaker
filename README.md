@@ -38,6 +38,8 @@ For Backend dependencies (terminal commands):
 * cd Backend--JIA-2113---Language-Exchange-Matchmaker 
 * npm install 
 
+**Dependencies Include
+
 For Frontend dependecies (terminal commands): 
 
 * cd Frontend_JIA 2113 - Language Exchange Matchmaker 
