@@ -81,6 +81,8 @@ Frontend dependencies:
   *  "styled-components": "^5.3.6",
   *  "timeago.js": "^4.0.2",
   *  "web-vitals": "^2.1.4"
+
+
 For Frontend dependecies (terminal commands): 
 
 * cd Frontend_JIA 2113 - Language Exchange Matchmaker 
