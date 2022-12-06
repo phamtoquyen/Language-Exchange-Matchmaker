@@ -1,17 +1,22 @@
 # JIA-2113---Language-Exchange-Matchmaker
 
 # Release Notes
-## Version 0.1.0
-### New Features
-* UI for Home, Login & Registration Page
-* Register an account in the new database schema
+## Version 1.0.0
+### Features
+* Registering an account and logging in
+* Creating a personalized profile
+* Matching with individuals that match your needs
+* Able to view friends on dashboard page
+* Chatting with friends 
 
 ### Bug Fixes
-* No schema was provided with the project, now there is a schema that can be upladed and used by developers
+* RESTful API created for the messageModel
+* Connected the FrontEnd pages to their respective BackEnd
 
 ### Known Issues
-* Database is not on a server hence there are currently multiple copies.
-* Multiple People can be registered with the same people.
+* Refresh needed for chats to appear
+* Issue where name of the person being messaged is incorrect
+* Window sizing issue depending on the size of the email
 
 
 # Install Guide Language Exchange MatchMaker 1.0 
