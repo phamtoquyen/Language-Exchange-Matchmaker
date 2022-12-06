@@ -48,9 +48,10 @@ To migrate the database
 * npx sequelize-cli db:migrate 
  
 ## BUILD 
-No build is necessary for this app.
+No builds are necessary for this app.
 ## INSTALLATION 
-No additional file needs to be added 
+No additional files need to be added 
+
 ## RUNNING APPLICATION
 Backend
 * cd Backend--JIA-2113---Language-Exchange-Matchmaker 
