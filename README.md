@@ -53,7 +53,32 @@ For Backend dependencies (terminal commands):
 * cd Backend--JIA-2113---Language-Exchange-Matchmaker 
 * npm install 
 
-
+Frontend dependencies: 
+"@iconscout/react-unicons": "^1.1.6",
+  *  "@testing-library/jest-dom": "^5.16.5",
+  *  "@testing-library/react": "^13.4.0",
+  *  "@testing-library/user-event": "^13.5.0",
+  *  "axios": "^0.27.2",
+  *  "bootstrap": "^5.2.1",
+  *  "connected-react-router": "^6.9.3",
+  *  "react": "^18.2.0",
+  *  "react-bootstrap": "^2.5.0",
+  *  "react-dom": "^18.2.0",
+  *  "react-icons": "^4.6.0",
+  *  "react-redux": "^8.0.5",
+  *  "react-router-dom": "^6.4.1",
+  *  "react-script": "^2.0.5",
+  *  "react-scripts": "^5.0.1",
+  *  "react-select": "^5.4.0",
+  *  "react-toastify": "^9.0.8",
+  *  "redux": "^4.2.0",
+  *  "redux-thunk": "^2.4.2",
+  *  "sass": "^1.55.0",
+  *  "save": "^2.5.0",
+  *  "socket.io-client": "^4.5.4",
+  *  "styled-components": "^5.3.6",
+  *  "timeago.js": "^4.0.2",
+  *  "web-vitals": "^2.1.4"
 For Frontend dependecies (terminal commands): 
 
 * cd Frontend_JIA 2113 - Language Exchange Matchmaker 
