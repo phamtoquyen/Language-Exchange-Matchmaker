@@ -49,9 +49,11 @@ Backend dependencies:
   *  "mysql2": "2.3.0",
   *  "nodemon": "^2.0.20",
   *  "sequelize": "^6.19.0"
+
 For Backend dependencies (terminal commands): 
 * cd Backend--JIA-2113---Language-Exchange-Matchmaker 
 * npm install 
+
 
 Frontend dependencies: 
 "@iconscout/react-unicons": "^1.1.6",
