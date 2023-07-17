@@ -52,7 +52,7 @@ Backend dependencies:
 
 For Backend dependencies (terminal commands): 
 * cd Backend--JIA-2113---Language-Exchange-Matchmaker 
-* npm install 
+* npm install --legacy-peer-deps
 
 
 Frontend dependencies: 
@@ -86,7 +86,7 @@ Frontend dependencies:
 For Frontend dependecies (terminal commands): 
 
 * cd Frontend_JIA 2113 - Language Exchange Matchmaker 
-* npm install  
+* npm install --legacy-peer-deps
 
 To migrate the database 
 * cd Backend--JIA-2113---Language-Exchange-Matchmaker/src 
