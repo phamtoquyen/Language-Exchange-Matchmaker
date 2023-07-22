@@ -154,6 +154,20 @@ let getUserInfoById = (userId) => {
     })
 }
 
+let handleTranslator = (en, ko) => {
+    return new Promise (async (resolve, reject) => {
+        try {
+            let userTranslation = await db.UserTranslations.create({
+                en: en,
+                ko: ko
+            });
+            console.log("translation");
+        } catch(e) {
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
-handleUserLogin, checkUserEmail, handleUserRegister, handleProfileCreation, getUserInfoById
+handleUserLogin, checkUserEmail, handleUserRegister, handleProfileCreation, getUserInfoById, handleTranslator
 }

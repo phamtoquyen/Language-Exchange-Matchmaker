@@ -1,4 +1,4 @@
-import userService from '../service/userService';
+import userService from '../Service/userService';
 
 let handleLogin = async (req, res) => {
     let email = req.body.email;
@@ -75,10 +75,22 @@ let handleGetUser = async (req, res) => {
     }
 }
 
+let handleTranslator = async (req, res) => {
+    let en = req.body.en;
+    let ko = req.body.ko;
+    let userData = await userService.handleTranslator(en, ko);
+    console.log(userData);
+    return res.status(200).json({
+        errorCode: userData.errCode,
+        message: userData.errMessage,
+        user: userData.user? userData.user : {}
+    });
+}
 
 module.exports = {
     handleLogin: handleLogin,
     handleRegister: handleRegister,
     handleProfileCreation: handleProfileCreation,
-    handleGetUser : handleGetUser
+    handleGetUser : handleGetUser,
+    handleTranslator : handleTranslator
 }

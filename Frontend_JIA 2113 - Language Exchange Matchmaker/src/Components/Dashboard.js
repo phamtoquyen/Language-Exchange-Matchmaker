@@ -69,6 +69,15 @@ function Dashboard()  {
   });
 
   }
+  const Translator = async(e) => {
+    navigate({
+      pathname: "/Translator",
+      search: createSearchParams({
+          id: id
+      }).toString()
+  });
+
+  }
   const handleChat = async(e) => {
     navigate({
       pathname: "/chat",
@@ -110,6 +119,7 @@ function Dashboard()  {
           Find Friend
         </Button>
         <Button className="btn-chat" onClick={handleChat}>chat</Button>
+        <Button className="btn-Screen" onClick={Translator}>Translator</Button>
         <Button className="btn-Screen" onClick={Logout}>
           Logout
         </Button>

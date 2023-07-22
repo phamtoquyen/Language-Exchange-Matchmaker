@@ -28,8 +28,12 @@ const addMessage = (data) => {
     return axios.post(`/Message/`, data)
 }
 
+const handleTranslator = (en, ko) => {
+    return axios.post('/Translator', {en: en, ko: ko});
+}
 
 
 
 
-export {handleLoginApi, handleRegisterApi, handleProfileCreationAPI, handleChatApi, handleGetUser, getMessages, addMessage}
+
+export {handleLoginApi, handleRegisterApi, handleProfileCreationAPI, handleChatApi, handleGetUser, getMessages, addMessage, handleTranslator}

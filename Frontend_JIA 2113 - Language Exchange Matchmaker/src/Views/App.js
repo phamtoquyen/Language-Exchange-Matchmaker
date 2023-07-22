@@ -14,6 +14,7 @@ import { Provider } from "react-redux";
 import store from "../store/ReduxStore";
 import { useDispatch } from "react-redux";
 import HelpPage from '../Components/HelpPage';
+import Translator from "../Components/Translator";
 
 const App = () => {
 
@@ -28,6 +29,7 @@ const App = () => {
           <Route path ="/Register" element ={<Registration />}/>
           <Route path ="/CreateProfile" element ={<CreateProfile />}/>
           <Route path ="/Dashboard" element ={<Dashboard />}/>
+          <Route path ="/Translator" element = {<Translator />}/>
           <Route path ="/LogoutConfirmation" element ={<LogoutConfirmationPage />}/>
           <Route path ="/Chat" element ={<Chat/>}/>
           <Route path ="/HelpPage" element ={<HelpPage/>}/>
