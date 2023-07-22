@@ -93,7 +93,8 @@ For Frontend dependecies (terminal commands):
 
 To migrate the database 
 * cd Backend--JIA-2113---Language-Exchange-Matchmaker/src 
-* npx sequelize-cli db:migrate 
+* npx sequelize-cli db:migrate
+* Note that you will likely need to set your database's password to "hello" in order to get things working. 
  
 ## BUILD 
 No builds are necessary for this app.
