@@ -30,7 +30,7 @@ let handleUserLogin = (email, password) => {
                     }
                 }else {
                     userData.errCode = 2;
-                    userData.errMessage = 'Username was no longer exist!'
+                    userData.errMessage = 'Username no longer exists!'
                 }
             }else {
                 /*userDate object {
@@ -39,7 +39,7 @@ let handleUserLogin = (email, password) => {
                 }
                 */
                 userData.errCode = 1;
-                userData.errMessage = 'Your email not exist!'
+                userData.errMessage = 'Invalid email!'
             }
             resolve(userData);
         }catch(e){

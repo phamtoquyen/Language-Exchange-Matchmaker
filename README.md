@@ -1,6 +1,17 @@
 # JIC-3200-LinguaLink | Language Exchange Matchmaker
 
 # Release Notes
+## Version 1.2.0
+### Features
+* English to Korean translator page
+* Backend dictionary/translation storage
+* Cleaned up and improved README's documentation and installation guiide
+### Bug Fixes
+* Database connection properly established for newly cloned project environments
+* Updated translator page to align with app's standard styling
+### Known Issues
+* 'Find Friend' feature on home page does not properly interact with backend
+* Chat screen is empty with no meaningful navigation options
 ## Version 1.1.0
 ### Features
 * Registering an account and logging in
@@ -9,8 +20,6 @@
 * Able to view friends on dashboard page
 * Chatting with friends
 * Virtual keyboard
-* English-to-Korean translator
-* Backend dictionary storage
 
 ### Bug Fixes
 * RESTful API created for the messageModel

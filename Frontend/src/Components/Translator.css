@@ -95,6 +95,7 @@ textarea {
   color: black;  
 }
 .clear {
+  background:linear-gradient(135deg, rgba(34,193,195,1) 0%,     rgba(253,187,45,1) 100%);
   position:fixed;
   z-index: 100;  
   top:15%;  
@@ -105,6 +106,7 @@ textarea {
   color: black;  
 }
 .trnslt {
+  background:linear-gradient(135deg, rgba(34,193,195,1) 0%,     rgba(253,187,45,1) 100%);
   position:fixed;
   z-index: 100;  
   top:15%;  
@@ -112,9 +114,12 @@ textarea {
   margin: 100px 20px 100px;
   width:150px;  
   height:50px;
-  color: black;  
+  border: none;
+  outline: none;
+  color: white;  
 }
 .save {
+  background:linear-gradient(135deg, rgba(34,193,195,1) 0%,     rgba(253,187,45,1) 100%);
   position:fixed;
   z-index: 100;  
   top:15%;  

@@ -3,6 +3,7 @@ import React from "react";
 import './Registration.css'; 
 import './Dashboard.css'; 
 import './Translator.css';
+import Button from 'react-bootstrap/Button';
 import { createSearchParams, useSearchParams, useNavigate } from "react-router-dom";
 import translate from 'translate';
 import { handleTranslator } from '../Services/userService';
@@ -63,9 +64,9 @@ function Translator() {
             onChange={onChangeInput}
             ></textarea>
         </div>
-        <button class="trnslt" onClick={translateButton}>Translate</button>
-        <button class="save" onClick={saveButton}>Save Translation</button>
-        <button class="clear" onClick={onClear}>Clear</button>
+        <Button className="trnslt" onClick={translateButton}>Translate</Button>
+        <Button className="save" onClick={saveButton}>Save Translation</Button>
+        <Button className="clear" onClick={onClear}>Clear</Button>
         <div class="keyboard">
         <div class="row row1">
             <button onClick={onClick}>Q</button>
