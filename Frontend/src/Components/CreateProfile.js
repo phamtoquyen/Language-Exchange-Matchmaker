@@ -36,7 +36,9 @@ function CreateProfile() {
  ]
  const TargetLanguageProficiency = [
   {value: "Beginner", label: "Beginner"},
+  {value: "Elementary", label: "Elementary"},
   {value: "Intermediate", label: "Intermediate"},
+  {value: "Proficient", label: "Proficient"},
   {value: "Fluent", label: "Fluent"},
  ]
 
@@ -51,12 +53,21 @@ function CreateProfile() {
   {value:"Engineering", label: "Engineering"},
   {value:"Retail", label:"Retail"},
   {value:"Finance", label:"Finance"},
+  {value:"Law", label:"Law"},
+  {value:"Medecine", label:"Medecine"},
  ]
  const Hobby = [
   {value:"Reading", label:"Reading"},
   {value:"Sport", label: "Sport"},
   {value:"Gardening", label:"Gardening"},
   {value:"Workout", label:"Workout"},
+  {value:"Music", label:"Music"},
+  {value:"Art", label:"Art"},
+  {value:"Photography", label:"Photography"},
+  {value:"Writing", label:"Writing"},
+  {value:"Gaming", label:"Gaming"},
+  {value:"Cooking", label:"Cooking"},
+  {value:"Fishing", label:"Fishing"},
  ]
 
 
