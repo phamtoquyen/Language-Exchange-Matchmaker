@@ -65,6 +65,7 @@ let handleProfileCreation = async (req, res) => {
 }
 
 let handleGetUser = async (req, res) => {
+    console.log("Second Check")
     const userId = req.params.userId
     if (userId) {
         let userData = await userService.getUserInfoById(userId)

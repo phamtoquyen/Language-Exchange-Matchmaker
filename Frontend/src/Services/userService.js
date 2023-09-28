@@ -32,8 +32,10 @@ const handleTranslator = (en, ko) => {
     return axios.post('/Translator', {en: en, ko: ko});
 }
 
+const handleMatch = (id, userNative, userTarget) => {
+    return axios.post('/findMatch', {id: id, userNative: userNative, userTarget: userTarget});
+}
 
 
 
-
-export {handleLoginApi, handleRegisterApi, handleProfileCreationAPI, handleChatApi, handleGetUser, getMessages, addMessage, handleTranslator}
+export {handleLoginApi, handleRegisterApi, handleProfileCreationAPI, handleChatApi, handleGetUser, getMessages, addMessage, handleTranslator, handleMatch}

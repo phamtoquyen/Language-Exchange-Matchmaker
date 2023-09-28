@@ -9,6 +9,7 @@ import { createSearchParams, useSearchParams, useNavigate } from "react-router-d
 import Button from 'react-bootstrap/Button';
 import { handleUserDashBoardApi } from '../Services/dashboardService';
 import { handleFindFriendsApi } from '../Services/findFriendsService';
+import { handleGetUser } from '../Services/userService';
 
 
 function Dashboard()  {
@@ -86,6 +87,19 @@ function Dashboard()  {
       }).toString()
   });
   }
+
+  const match = async(e) => {
+    try {
+      console.log("First Check")
+      let data = await handleGetUser(id)
+      console.log(data.user.firstname)
+      //const data = await handleMatch(chat.id);
+      //console.log(data)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const handleHelp = async(e) => {
     navigate({
       pathname: "/HelpPage",
@@ -115,9 +129,7 @@ function Dashboard()  {
         <h2>{email}</h2>
         
         
-        <Button className="btn-Screen">
-          Find Friend
-        </Button>
+        <Button className="btn-Screen" onClick={match}>Find Friend</Button>
         <Button className="btn-chat" onClick={handleChat}>chat</Button>
         <Button className="btn-Screen" onClick={Translator}>Translator</Button>
         <Button className="btn-Screen" onClick={Logout}>

@@ -7,6 +7,7 @@ import dashBoardController from '../controller/dashBoardController';
 import messageController from '../controller/messageController';
 import chatController from '../controller/chatController';
 import friendsController from '../controller/friendsController';
+import matchingController from '../controller/matchingController';
 var appRoot = require('app-root-path');
 let router = express.Router();
 
@@ -22,6 +23,8 @@ let initWebRoute = (app) => {
     router.post('/CreateProfile', userController.handleProfileCreation)
     router.post('/Dashboard', dashBoardController.handleDashBoard)
     router.post('/findFriends', friendsController.findFriends)
+
+    router.post('/findMatch', matchingController.handleMatchingFriends)
 
 
     //Chat routes

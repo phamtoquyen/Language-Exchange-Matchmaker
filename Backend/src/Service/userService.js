@@ -139,6 +139,7 @@ let handleProfileCreation = (native_language, target_language, target_language_p
 let getUserInfoById = (userId) => {
     return new Promise (async (resolve, reject) => {
         try{
+            console.log("Third Check")
             let user = await db.UserAccount.findOne({
                 where: {id: userId}
             })
