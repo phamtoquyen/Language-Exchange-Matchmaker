@@ -1,24 +1,25 @@
 import matchingService from '../Service/matchingService';
 import matchingService from '../Service/userService';
 
-// let handleMatchingFriends = async (req, res) => {
-//   // let id = req.body.id
-//   // let userNative = req.body.userNative
-//   // let userTarget = req.body.userTarget
-//   // let arrayOfName = {}
+ let handleMatchingFriends = async (req, res) => {
+    let id = req.body.id
+    let userNative = req.body.userNative
+    let userTarget = req.body.userTarget
+    let arrayOfName = {}
 
-//   // Call handleUserLogin to have the value of userData
-//   let userData = await matchingService.checkFriends(id, userNative, userTarget)
-//   userData.forEach(stat => {
-//     console.log(stat.id);
-//     let userFirstName = userService.getUserInfoById(stat.id)
-//     arrayOfName.push(userFirstName.firstName)
-// });
-//   // return arrayOfName 
+   // Call handleUserLogin to have the value of userData
+   console.log("XYZ")
+   let userData = await matchingService.checkFriends(id, userNative, userTarget)
+   userData.forEach(stat => {
+     console.log(stat.id);
+     let userFirstName = userService.getUserInfoById(stat.id)
+     arrayOfName.push(userFirstName.firstName)
+ });
+    return arrayOfName 
 
 
-//   return res.send(arrayOfName)
-// }
+   return res.send(arrayOfName)
+}
 
 let handleGetUser = async (req, res) => {
   const userId = req.params.userId

@@ -139,7 +139,27 @@ let handleProfileCreation = (native_language, target_language, target_language_p
 let getUserInfoById = (userId) => {
     return new Promise (async (resolve, reject) => {
         try{
+            console.log("Third Check")
             let user = await db.UserAccount.findOne({
+                where: {id: userId}
+            })
+            console.log(userId)
+            if (user){
+                resolve(user);
+            }else {
+                resolve([]);
+            }
+        }catch(e){
+            reject(e);
+        }
+    })
+}
+
+let getProfileById = (userId) => {
+    return new Promise (async (resolve, reject) => {
+        try{
+            console.log("Fifth Check")
+            let user = await db.UserProfile.findOne({
                 where: {id: userId}
             })
             console.log(userId)
@@ -169,5 +189,5 @@ let handleTranslator = (en, ko) => {
 }
 
 module.exports = {
-handleUserLogin, checkUserEmail, handleUserRegister, handleProfileCreation, getUserInfoById, handleTranslator
+handleUserLogin, checkUserEmail, handleUserRegister, handleProfileCreation, getUserInfoById, handleTranslator, getProfileById
 }

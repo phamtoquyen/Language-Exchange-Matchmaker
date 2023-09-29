@@ -65,9 +65,22 @@ let handleProfileCreation = async (req, res) => {
 }
 
 let handleGetUser = async (req, res) => {
+    console.log("Second Check")
     const userId = req.params.userId
     if (userId) {
         let userData = await userService.getUserInfoById(userId)
+        return res.send(userData)
+
+    }else {
+        return res.send("User not found !");
+    }
+}
+
+let handleGetProfile = async (req, res) => {
+    console.log("Fourth Check")
+    const userId = req.params.userId
+    if (userId) {
+        let userData = await userService.getProfileById(userId)
         return res.send(userData)
 
     }else {
@@ -92,5 +105,6 @@ module.exports = {
     handleRegister: handleRegister,
     handleProfileCreation: handleProfileCreation,
     handleGetUser : handleGetUser,
-    handleTranslator : handleTranslator
+    handleTranslator : handleTranslator,
+    handleGetProfile : handleGetProfile
 }
