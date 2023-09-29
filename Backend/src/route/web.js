@@ -25,6 +25,8 @@ let initWebRoute = (app) => {
     router.post('/findFriends', friendsController.findFriends)
 
     router.post('/findMatch', matchingController.handleMatchingFriends)
+    router.get('/api/getProfile/:userId', userController.handleGetProfile)
+
 
 
     //Chat routes

@@ -9,7 +9,7 @@ import { createSearchParams, useSearchParams, useNavigate } from "react-router-d
 import Button from 'react-bootstrap/Button';
 import { handleUserDashBoardApi } from '../Services/dashboardService';
 import { handleFindFriendsApi } from '../Services/findFriendsService';
-import { handleGetUser } from '../Services/userService';
+import { handleGetProfile, handleGetUser } from '../Services/userService';
 
 
 function Dashboard()  {
@@ -92,7 +92,9 @@ function Dashboard()  {
     try {
       console.log("First Check")
       let data = await handleGetUser(id)
-      console.log(data.user.firstname)
+      console.log(data.firstname)
+      let data2 = await handleGetProfile(id)
+      console.log(data2.native_language)
       //const data = await handleMatch(chat.id);
       //console.log(data)
     } catch (error) {

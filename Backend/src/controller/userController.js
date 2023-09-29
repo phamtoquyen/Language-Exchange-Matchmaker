@@ -76,6 +76,18 @@ let handleGetUser = async (req, res) => {
     }
 }
 
+let handleGetProfile = async (req, res) => {
+    console.log("Fourth Check")
+    const userId = req.params.userId
+    if (userId) {
+        let userData = await userService.getProfileById(userId)
+        return res.send(userData)
+
+    }else {
+        return res.send("User not found !");
+    }
+}
+
 let handleTranslator = async (req, res) => {
     let en = req.body.en;
     let ko = req.body.ko;
@@ -93,5 +105,6 @@ module.exports = {
     handleRegister: handleRegister,
     handleProfileCreation: handleProfileCreation,
     handleGetUser : handleGetUser,
-    handleTranslator : handleTranslator
+    handleTranslator : handleTranslator,
+    handleGetProfile : handleGetProfile
 }

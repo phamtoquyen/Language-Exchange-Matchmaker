@@ -36,6 +36,10 @@ const handleMatch = (id, userNative, userTarget) => {
     return axios.post('/findMatch', {id: id, userNative: userNative, userTarget: userTarget});
 }
 
+const handleGetProfile = (receiverId) => {
+    return axios.get(`/api/getProfile/${receiverId}`)
+}
 
 
-export {handleLoginApi, handleRegisterApi, handleProfileCreationAPI, handleChatApi, handleGetUser, getMessages, addMessage, handleTranslator, handleMatch}
+
+export {handleLoginApi, handleRegisterApi, handleProfileCreationAPI, handleChatApi, handleGetUser, getMessages, addMessage, handleTranslator, handleMatch, handleGetProfile}
