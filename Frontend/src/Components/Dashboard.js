@@ -38,10 +38,10 @@ function Dashboard()  {
         setFName(data.user.firstName);
         setLName(data.user.lastName);
         setEmail(data.user.email);
-        console.log("start")
-        let lists = await handleFindFriendsApi(id);
-        setfriendids(lists.chatsData)
-        console.log(friendids.length)
+        //console.log("start")
+        //let lists = await handleFindFriendsApi(id);
+        //setfriendids(lists.chatsData)
+        //console.log(friendids.length)
         for(let i = 0; i < friendids.length; i++) {
           let friend = await handleUserDashBoardApi(friendids[i].user2_ID);
           names.push(friend.user.firstName)
@@ -92,7 +92,7 @@ function Dashboard()  {
     try {
       console.log("First Check")
       let data = await handleGetUser(id)
-      console.log(data.firstname)
+      console.log(data.firstName)
       let data2 = await handleGetProfile(id)
       console.log(data2.native_language)
       //const data = await handleMatch(chat.id);

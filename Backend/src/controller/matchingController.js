@@ -1,5 +1,5 @@
 import matchingService from '../Service/matchingService';
-import matchingService from '../Service/userService';
+import userService from '../Service/userService';
 
  let handleMatchingFriends = async (req, res) => {
     let id = req.body.id
@@ -61,5 +61,6 @@ let handleGetUserFirstName = async (req, res) => {
 
 module.exports = {
   handleMatchingFriends: handleMatchingFriends,
+  handleGetUser: handleGetUser,
   handleGetUserFirstName: handleGetUserFirstName
 }
