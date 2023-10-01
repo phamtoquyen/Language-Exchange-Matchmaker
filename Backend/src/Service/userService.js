@@ -1,4 +1,4 @@
-import db from '../models/index';
+import db, { sequelize } from '../models/index';
 import bcrypt from 'bcryptjs';
 
 let user_id = null
@@ -48,13 +48,14 @@ let handleUserLogin = (email, password) => {
     })
 }
 
-let handleUserRegister = (firstName, lastName, email, password) => {
+let handleUserRegister = (firstName, lastName, email, password, save) => {
     return new Promise(async (resolve, reject) => {
         try{
             // Return obj to Controller and the Controller will response to the user
             let userData = {};
             let isExist = await checkUserEmail(email);
             if (isExist){
+                console.log("Email taken")
                 //user already exists
                 //Then, compare password
                 //1. Check again if later there someone delete that user in the database after we check
@@ -69,7 +70,7 @@ let handleUserRegister = (firstName, lastName, email, password) => {
                 */
                 const salt = bcrypt.genSaltSync(10);
                 const hash = bcrypt.hashSync(password, salt);
-                let UserAccount = await db.UserAccount.create({
+                let UserAccount = await db.UserAccount.build({
                     email: email,
                     password: hash,
                     firstName: firstName,
@@ -77,10 +78,17 @@ let handleUserRegister = (firstName, lastName, email, password) => {
                     createdAt: new Date(),
                     updatedAt: new Date()
                 });
-                console.log(UserAccount.lastName);
+                if (save) {
+                    await UserAccount.save()
+                }
+                //console.log("tenth check")
+                console.log("name: ", UserAccount.firstName)
+                //console.log("id: ", UserAccount.id);
                 userData.errCode = 0;
                 userData.errMessage = 'Successfully Registered';
-                user_id = UserAccount['dataValues']['id']
+                //user_id = UserAccount['dataValues']['id']
+                let user_id = UserAccount.get('id')
+                console.log("id: ", user_id);
                 userData.id = user_id
                 }
             resolve(userData);
@@ -111,13 +119,13 @@ let checkUserEmail = (userEmail) => {
     })
 }
 
-let handleProfileCreation = (native_language, target_language, target_language_proficiency, age, gender, profession, hobby) => {
+let handleProfileCreation = (id, native_language, target_language, target_language_proficiency, age, gender, profession, hobby, save) => {
     return new Promise(async (resolve, reject) => {
         try{
             let userData = {};
-
-            let userProfile = await db.UserProfile.create({
-                id: user_id,
+            console.log("id passed to user service is: ", id)
+            let userProfile = await db.UserProfile.build({
+                id: id,
                 native_language: native_language,
                 target_language: target_language,
                 target_language_proficiency: target_language_proficiency,
@@ -126,9 +134,33 @@ let handleProfileCreation = (native_language, target_language, target_language_p
                 profession: profession,
                 hobby: hobby
             });
-            console.log("hi");
+            if(save) {
+                await userProfile.save()
+            } 
+            console.log("Id passed to profile is: ", userProfile.id)
+            console.log(userProfile);
             userData.errCode = 0;
             userData.errMessage = 'Profile Successfully Created!';
+            resolve(userData);
+        }catch(e){
+            reject(e)
+        }
+    })
+}
+
+let handleDataPopulation = (fName, lName, email, pass, native, target, age, gender, proficiency, profession, hobby) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            //await db.UserAccount.truncate()
+            //await db.UserProfile.truncate()
+            let userData = {};
+            let account = await handleUserRegister(fName, lName, email, pass, true)
+            let id = account.id
+            console.log("id from account is: ", id)
+            let profile = await handleProfileCreation(id, native, target, proficiency, age, gender, profession, hobby, true)
+            console.log("hi");
+            userData.errCode = 0;
+            userData.errMessage = 'Data Successfully Populated!';
             resolve(userData);
         }catch(e){
             reject(e)
@@ -189,5 +221,5 @@ let handleTranslator = (en, ko) => {
 }
 
 module.exports = {
-handleUserLogin, checkUserEmail, handleUserRegister, handleProfileCreation, getUserInfoById, handleTranslator, getProfileById
+handleUserLogin, checkUserEmail, handleUserRegister, handleProfileCreation, getUserInfoById, handleTranslator, getProfileById, handleDataPopulation
 }

@@ -100,7 +100,7 @@ function CreateProfile() {
  };
 const [search] = useSearchParams();
  const id = search.get("id");
- console.log(id)
+ console.log("Your id is: ", id)
  const navigate = useNavigate();
   // Handling the form submission
   const handleSubmit = async (e) => {
@@ -114,7 +114,7 @@ const [search] = useSearchParams();
     setError("");
     try{
       console.log('Sending create: ' + nativeLanguage + targetLanguage+ targetLanguageProficiency+ age+ gender+ profession+ hobby)
-      let data = await handleProfileCreationAPI(nativeLanguage, targetLanguage, targetLanguageProficiency, age, gender, profession, hobby);
+      let data = await handleProfileCreationAPI(id, nativeLanguage, targetLanguage, targetLanguageProficiency, age, gender, profession, hobby);
       console.log('Create done')
 
       if (data && data.errCode !== 0){
@@ -224,7 +224,7 @@ const [search] = useSearchParams();
 
         <div className='form-group'>
         <label className="label">Hobby</label>
-        <Select options={Hobby} onChange={handleHobby} isMulti/>
+        <Select options={Hobby} onChange={handleHobby}/>
         </div>
         
 

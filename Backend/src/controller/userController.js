@@ -33,8 +33,9 @@ let handleRegister = async (req, res) => {
         })
 
     }
+    let save = true
     // Call handleUserLogin to have the value of userData
-    let userData = await userService.handleUserRegister(firstName,lastName, email, password)
+    let userData = await userService.handleUserRegister(firstName,lastName, email, password, save)
     console.log(userData.id);
 
     return res.status(200).json({
@@ -54,14 +55,40 @@ let handleProfileCreation = async (req, res) => {
     let gender = req.body.gender;
     let profession = req.body.profession;
     let hobby = req.body.hobby;
+    let id = req.body.id
+    let save = true
+    //console.log("Id passed to profile controller is: ", id)
     // Call handleProfileCreation to have the value of userData
-    let userData = await userService.handleProfileCreation(native_language, target_language, target_language_proficiency, age, gender, profession, hobby)
+    let userData = await userService.handleProfileCreation(id, native_language, target_language, target_language_proficiency, age, gender, profession, hobby, save)
     console.log(userData)
     return res.status(200).json({
          errorCode: userData.errCode,
          message: userData.errMessage,
          user: userData.user? userData.user : {}
     })
+}
+
+let handleDataPopulation = async (req, res) => {
+    let languages = ["English", "Korean"];
+    let genders = ["Male", "Female", "Other"];
+    let professions = ["Education", "Engineering", "Retail", "Finance", "Law", "Medecine"];
+    let hobbies = ["Reading", "Sport", "Gardening", "Workout", "Music", "Art", "Photography", "Writing", "Gaming", "Cooking", "Fishing"];
+    let proficiencies = ["Beginner", "Elementary", "Intermediate", "Proficient", "Fluent"];
+    for (let i=0; i<100; i++) {
+        let fName = "SampleUser_" + i
+        let lName = "SampleUser_" + i
+        let email = "DummyDataEmail_" + i
+        let pass = "Password"
+        let random_index = Math.floor(Math.random() * 2);
+        let native = languages[random_index];
+        let target = languages[((random_index+1)%2)];
+        let age = 18 + Math.floor(Math.random() * 18);
+        let gender = genders[Math.floor(Math.random() * 3)];
+        let profession = professions[Math.floor(Math.random() * 6)];
+        let hobby = hobbies[Math.floor(Math.random() * 11)];
+        let proficiency = proficiencies[Math.floor(Math.random() * 5)];
+        let userData = await userService.handleDataPopulation(fName, lName, email, pass, native, target, age, gender, proficiency, profession, hobby)
+    }
 }
 
 let handleGetUser = async (req, res) => {
@@ -106,5 +133,6 @@ module.exports = {
     handleProfileCreation: handleProfileCreation,
     handleGetUser : handleGetUser,
     handleTranslator : handleTranslator,
-    handleGetProfile : handleGetProfile
+    handleGetProfile : handleGetProfile,
+    handleDataPopulation : handleDataPopulation
 }
