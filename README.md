@@ -1,6 +1,16 @@
 # JIC-3200-LinguaLink | Language Exchange Matchmaker
 
 # Release Notes
+## Version 1.3.0
+### Features
+* Matching service to identify potential partners
+* Backend Dummy Data generation for testing
+* Expanded user profile options for language proficiency, hobby, and profession
+### Bug Fixes
+* Added action to 'find friend' button on dashboard
+* Fixed an issue where user profile would not be instantiated with an id key
+### Known Issues
+* Matching service sometime returns a duplicate user
 ## Version 1.2.0
 ### Features
 * English to Korean translator page

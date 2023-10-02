@@ -1,13 +1,28 @@
 import React from "react";
+import { useState, useEffect } from 'react';
 import '../Styles/Common.css'; 
 import { useNavigate } from "react-router-dom";
 import logo from "../Styles/logo.png";
 import Button from 'react-bootstrap/Button';
+import { handleDataPopulation } from '../Services/userService';
 
 
 
 function Home() {
     const navigate = useNavigate();
+    
+    const getInfo = async(e) => {
+        try{
+          await handleDataPopulation()
+          }
+      catch(error){
+        console.log(error);
+      }
+    }
+  
+    useEffect(() => {
+      //getInfo()
+    });
 
     return (
         <div className="screen-Background">

@@ -9,7 +9,7 @@ import { createSearchParams, useSearchParams, useNavigate } from "react-router-d
 import Button from 'react-bootstrap/Button';
 import { handleUserDashBoardApi } from '../Services/dashboardService';
 import { handleFindFriendsApi } from '../Services/findFriendsService';
-import { handleGetProfile, handleGetUser } from '../Services/userService';
+import { handleGetProfile, handleGetUser, handleMatch } from '../Services/userService';
 
 
 function Dashboard()  {
@@ -38,10 +38,10 @@ function Dashboard()  {
         setFName(data.user.firstName);
         setLName(data.user.lastName);
         setEmail(data.user.email);
-        console.log("start")
-        let lists = await handleFindFriendsApi(id);
-        setfriendids(lists.chatsData)
-        console.log(friendids.length)
+        //console.log("start")
+        //let lists = await handleFindFriendsApi(id);
+        //setfriendids(lists.chatsData)
+        //console.log(friendids.length)
         for(let i = 0; i < friendids.length; i++) {
           let friend = await handleUserDashBoardApi(friendids[i].user2_ID);
           names.push(friend.user.firstName)
@@ -92,10 +92,16 @@ function Dashboard()  {
     try {
       console.log("First Check")
       let data = await handleGetUser(id)
-      console.log(data.firstname)
+      console.log(data.firstName)
       let data2 = await handleGetProfile(id)
       console.log(data2.native_language)
-      //const data = await handleMatch(chat.id);
+      let data3 = await handleMatch(id, data2.native_language, data2.target_language);
+      console.log("ninth check")
+      for (let i = 0; i < 5; i++){
+        console.log(data3[i][0])
+        console.log(data3[i][1])
+      }
+
       //console.log(data)
     } catch (error) {
       console.log(error);

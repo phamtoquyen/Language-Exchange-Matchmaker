@@ -36,7 +36,9 @@ function CreateProfile() {
  ]
  const TargetLanguageProficiency = [
   {value: "Beginner", label: "Beginner"},
+  {value: "Elementary", label: "Elementary"},
   {value: "Intermediate", label: "Intermediate"},
+  {value: "Proficient", label: "Proficient"},
   {value: "Fluent", label: "Fluent"},
  ]
 
@@ -51,12 +53,21 @@ function CreateProfile() {
   {value:"Engineering", label: "Engineering"},
   {value:"Retail", label:"Retail"},
   {value:"Finance", label:"Finance"},
+  {value:"Law", label:"Law"},
+  {value:"Medecine", label:"Medecine"},
  ]
  const Hobby = [
   {value:"Reading", label:"Reading"},
   {value:"Sport", label: "Sport"},
   {value:"Gardening", label:"Gardening"},
   {value:"Workout", label:"Workout"},
+  {value:"Music", label:"Music"},
+  {value:"Art", label:"Art"},
+  {value:"Photography", label:"Photography"},
+  {value:"Writing", label:"Writing"},
+  {value:"Gaming", label:"Gaming"},
+  {value:"Cooking", label:"Cooking"},
+  {value:"Fishing", label:"Fishing"},
  ]
 
 
@@ -89,7 +100,7 @@ function CreateProfile() {
  };
 const [search] = useSearchParams();
  const id = search.get("id");
- console.log(id)
+ console.log("Your id is: ", id)
  const navigate = useNavigate();
   // Handling the form submission
   const handleSubmit = async (e) => {
@@ -103,7 +114,7 @@ const [search] = useSearchParams();
     setError("");
     try{
       console.log('Sending create: ' + nativeLanguage + targetLanguage+ targetLanguageProficiency+ age+ gender+ profession+ hobby)
-      let data = await handleProfileCreationAPI(nativeLanguage, targetLanguage, targetLanguageProficiency, age, gender, profession, hobby);
+      let data = await handleProfileCreationAPI(id, nativeLanguage, targetLanguage, targetLanguageProficiency, age, gender, profession, hobby);
       console.log('Create done')
 
       if (data && data.errCode !== 0){
@@ -213,7 +224,7 @@ const [search] = useSearchParams();
 
         <div className='form-group'>
         <label className="label">Hobby</label>
-        <Select options={Hobby} onChange={handleHobby} isMulti/>
+        <Select options={Hobby} onChange={handleHobby}/>
         </div>
         
 

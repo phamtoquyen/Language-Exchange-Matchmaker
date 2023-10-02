@@ -1,21 +1,25 @@
 import matchingService from '../Service/matchingService';
-import matchingService from '../Service/userService';
+import userService from '../Service/userService';
 
  let handleMatchingFriends = async (req, res) => {
-    let id = req.body.id
-    let userNative = req.body.userNative
-    let userTarget = req.body.userTarget
+    console.log("Check B")
+    let id = req.params.userId
+    let userNative = req.params.userNative
+    let userTarget = req.params.userTarget
     let arrayOfName = {}
 
    // Call handleUserLogin to have the value of userData
-   console.log("XYZ")
-   let userData = await matchingService.checkFriends(id, userNative, userTarget)
+   console.log("Sixth Check")
+   let userData = await matchingService.checkFriends(userNative, userTarget, id)
+   /* console.log("Match: ", userData[0])
    userData.forEach(stat => {
      console.log(stat.id);
      let userFirstName = userService.getUserInfoById(stat.id)
      arrayOfName.push(userFirstName.firstName)
  });
-    return arrayOfName 
+    return arrayOfName  */
+    console.log(userData)
+    return res.send(userData)
 
 
    return res.send(arrayOfName)
@@ -61,5 +65,6 @@ let handleGetUserFirstName = async (req, res) => {
 
 module.exports = {
   handleMatchingFriends: handleMatchingFriends,
+  handleGetUser: handleGetUser,
   handleGetUserFirstName: handleGetUserFirstName
 }
