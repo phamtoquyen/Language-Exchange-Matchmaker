@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import React from "react";
 import './Videocall.css';
-//import { VideoRoom } from './VideoRoom';
+import { VideoRoom } from './VideoRoom';
 
 function Videocall() {
   const [joined, setJoined] = useState();
@@ -14,7 +14,7 @@ function Videocall() {
           Join Room
         </button>
       )}
-
+      {joined && <VideoRoom />}
 
     </div>
   );
