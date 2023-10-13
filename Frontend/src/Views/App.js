@@ -15,6 +15,7 @@ import store from "../store/ReduxStore";
 import { useDispatch } from "react-redux";
 import HelpPage from '../Components/HelpPage';
 import Translator from "../Components/Translator";
+import Videocall from "../Components/Videocall";
 
 const App = () => {
 
@@ -30,6 +31,7 @@ const App = () => {
           <Route path ="/CreateProfile" element ={<CreateProfile />}/>
           <Route path ="/Dashboard" element ={<Dashboard />}/>
           <Route path ="/Translator" element = {<Translator />}/>
+          <Route path ="/Videocall" element = {<Videocall />}/>
           <Route path ="/LogoutConfirmation" element ={<LogoutConfirmationPage />}/>
           <Route path ="/Chat" element ={<Chat/>}/>
           <Route path ="/HelpPage" element ={<HelpPage/>}/>
