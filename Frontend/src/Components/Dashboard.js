@@ -79,6 +79,15 @@ function Dashboard()  {
   });
 
   }
+  const call = async(e) => {
+    navigate({
+      pathname: "/Videocall",
+      search: createSearchParams({
+          id: id
+      }).toString()
+  });
+
+  }
   const handleChat = async(e) => {
     navigate({
       pathname: "/chat",
@@ -139,6 +148,7 @@ function Dashboard()  {
         
         <Button className="btn-Screen" onClick={match}>Find Friend</Button>
         <Button className="btn-chat" onClick={handleChat}>chat</Button>
+        <Button className="btn-Screen" onClick={call}>Call</Button>
         <Button className="btn-Screen" onClick={Translator}>Translator</Button>
         <Button className="btn-Screen" onClick={Logout}>
           Logout
