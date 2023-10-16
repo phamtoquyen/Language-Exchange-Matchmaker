@@ -23,9 +23,6 @@ let handleUserLogin = (email, password) => {
                         userData.UserAccount = UserAccount;
                         user_id = UserAccount['dataValues']['id']
                         userData.id =  user_id
-                        UserAccount.loggedIn = true;
-                        UserAccount.save()
-                        userData.loggedIn = true;
                         console.log(user_id)
                     } else {
                         userData.errCode = 3;
@@ -79,8 +76,7 @@ let handleUserRegister = (firstName, lastName, email, password, save) => {
                     firstName: firstName,
                     lastName: lastName,
                     createdAt: new Date(),
-                    updatedAt: new Date(),
-                    loggedIn: false
+                    updatedAt: new Date()
                 });
                 if (save) {
                     await UserAccount.save()
