@@ -7,9 +7,13 @@ import profile from "../Styles/profilepic.jpg";
 import { createSearchParams, useSearchParams, useNavigate } from "react-router-dom";
 
 import Button from 'react-bootstrap/Button';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import ListGroup from 'react-bootstrap/ListGroup';
 import { handleUserDashBoardApi } from '../Services/dashboardService';
 import { handleFindFriendsApi } from '../Services/findFriendsService';
 import { handleGetProfile, handleGetUser, handleMatch } from '../Services/userService';
+import ListGroupItem from 'react-bootstrap/esm/ListGroupItem';
 
 
 function Dashboard()  {
@@ -97,6 +101,11 @@ function Dashboard()  {
   });
   }
 
+  function friendsList() {
+    return 
+  }
+
+  let friends = []
   const match = async(e) => {
     try {
       console.log("First Check")
@@ -106,9 +115,14 @@ function Dashboard()  {
       console.log(data2.native_language)
       let data3 = await handleMatch(id, data2.native_language, data2.target_language);
       console.log("ninth check")
+      document.getElementById("friendheader").removeAttribute("hidden")
       for (let i = 0; i < 5; i++){
         console.log(data3[i][0])
         console.log(data3[i][1])
+        if (i < 3) {
+          document.getElementById("friend" + (i+1)).textContent = data3[i][0]
+          document.getElementById("friend" + (i+1)).removeAttribute("hidden")
+        }
       }
 
       //console.log(data)
@@ -155,9 +169,13 @@ function Dashboard()  {
         </Button>
         <h2>Friends</h2>
         <div className="frientlist">
-          {array}
+          <ListGroup id="friendlist">
+            <ListGroup.Item id="friendheader" hidden variant="success">Add a match below:</ListGroup.Item>
+            <ListGroup.Item id="friend1" hidden variant="success" action href="#friend1">Friend 1</ListGroup.Item>
+            <ListGroup.Item id="friend2" hidden variant="success" action href="#friend2">Friend 2</ListGroup.Item>
+            <ListGroup.Item id="friend3" hidden variant="success" action href="#friend3">Friend 3</ListGroup.Item>
+          </ListGroup>
         </div>
-        
         </div>
         <Button className="btn-help" onClick={handleHelp} >?</Button>
         </div>
