@@ -1,6 +1,15 @@
 # JIC-3200-LinguaLink | Language Exchange Matchmaker
 
 # Release Notes
+## Version 1.4.0
+### Features
+* Preliminary Video Calling functionality
+* Matched Users can enter a virtual video conference room and communicate
+### Bug Fixes
+* Fixed an issue where unneccessary warning messages appeared
+### Known Issues
+* Dynamic video Token generation not working
+* Webcam does not disconnect immidiately after leaving video chat
 ## Version 1.3.0
 ### Features
 * Matching service to identify potential partners
