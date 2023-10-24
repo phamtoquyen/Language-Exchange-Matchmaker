@@ -224,6 +224,30 @@ let handleTranslator = (en, ko) => {
     })
 }
 
+let handleUserLogout = (id) => {
+    return new Promise(async (resolve, reject) => {
+        let userData = {};
+        try {
+            let UserAccount = await db.UserAccount.findOne({
+                where: {id: id}
+            });
+            if (UserAccount) {
+                userData.errCode = 0
+                userData.UserAccount = UserAccount
+                user_id = UserAccount['dataValues']['id']
+                userData.id = user_id
+                UserAccount.loggedIn = false
+                await UserAccount.save()
+                userData.loggedIn = false
+                console.log('Log out ' + user_id)
+            }
+            resolve(userData)
+        } catch(e) {
+            reject(e)
+        }
+    })
+}
+
 module.exports = {
-handleUserLogin, checkUserEmail, handleUserRegister, handleProfileCreation, getUserInfoById, handleTranslator, getProfileById, handleDataPopulation
+handleUserLogin, checkUserEmail, handleUserRegister, handleProfileCreation, getUserInfoById, handleTranslator, getProfileById, handleDataPopulation, handleUserLogout
 }
