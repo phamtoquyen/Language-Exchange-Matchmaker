@@ -4,6 +4,10 @@ const handleLoginApi = (userEmail, userPassword) => {
     return axios.post('/api/login', {email: userEmail, password: userPassword}) ;
 }
 
+const handleUserLogout = (id) => {
+    return axios.post('/api/logout', {id: id})
+}
+
 const handleRegisterApi= (firstName, lastName, Email, userPassword) => {
     return axios.post('/Register', {firstName: firstName, lastName: lastName, email: Email, password: userPassword}) ;
 }
@@ -46,4 +50,4 @@ const handleDataPopulation = () => {
 
 
 
-export {handleLoginApi, handleRegisterApi, handleProfileCreationAPI, handleChatApi, handleGetUser, getMessages, addMessage, handleTranslator, handleMatch, handleGetProfile, handleDataPopulation}
+export {handleLoginApi, handleRegisterApi, handleProfileCreationAPI, handleChatApi, handleGetUser, getMessages, addMessage, handleTranslator, handleMatch, handleGetProfile, handleDataPopulation, handleUserLogout}
