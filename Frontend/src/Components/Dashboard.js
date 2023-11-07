@@ -34,6 +34,7 @@ function Dashboard()  {
   //let friendids = [];
   //let name = ["prit","quyen","maisa","akshar","pratham"];
   let names = [] 
+  let array = []
   
   //console.log(data);
   const getInfo = async(e) => {
@@ -43,13 +44,13 @@ function Dashboard()  {
         setLName(data.user.lastName);
         setEmail(data.user.email);
         //console.log("start")
-        //let lists = await handleFindFriendsApi(id);
-        //setfriendids(lists.chatsData)
-        //console.log(friendids.length)
+        let lists = await handleFindFriendsApi(id);
+        setfriendids(lists.chatsData)
+        console.log('friends list length: ' + friendids.length)
         for(let i = 0; i < friendids.length; i++) {
           let friend = await handleUserDashBoardApi(friendids[i].user2_ID);
-          names.push(friend.user.firstName)
-          
+          let friendName = friend.user.firstName + ' ' + friend.user.lastName
+          names.push(friendName)
         }
         setName(names)
 
@@ -60,9 +61,31 @@ function Dashboard()  {
 
   }
 
+  const setup = () => {
+    for(let i = 0; i < friendids.length; i++) {
+      console.log('name-i ' + name[i].name)
+      console.log('logged in ' + name[i].loggedIn)
+      if (name[i].loggedIn) {
+        array.push(
+          <div className='leftOnline'>
+            <img src={profile} alt="DP" className ="leftpic" />
+            <text className='text'>{name[i]}</text>
+          </div>
+        );
+      } else {
+        array.push(
+          <div className='leftOffline'>
+            <img src={profile} alt="DP" className ="leftpic" />
+            <text className='text'>{name[i]}</text>
+          </div>
+        );
+      }
+    }
+  }
+
   useEffect(() => {
-    // Update the document title using the browser API
     getInfo()
+    //setup()
   });
   
   const Logout = async(e) => {
@@ -139,7 +162,33 @@ function Dashboard()  {
       }).toString()
   });
   }
-  let array = [];
+  // let array = [];
+  // for(let i = 0; i < friendids.length; i++) {
+  //   console.log('name-i ' + names[i].name)
+  //   console.log('logged in ' + names[i].loggedIn)
+  //   if (names[i].loggedIn) {
+  //     array.push(
+  //       <div className='leftOnline'>
+  //         <img src={profile} alt="DP" className ="leftpic" />
+  //         <text className='text'>{name[i]}</text>
+  //       </div>
+  //     );
+  //   } else {
+  //     array.push(
+  //       <div className='leftOffline'>
+  //         <img src={profile} alt="DP" className ="leftpic" />
+  //         <text className='text'>{name[i]}</text>
+  //       </div>
+  //     );
+  //   }
+  //   //console.log('name-i ' + name[i])
+  //   // array.push(
+  //   //   <div className='left'>
+  //   //     <img src={profile} alt="DP" className ="leftpic" />
+  //   //     <text className='text'>{name[i]}</text>
+  //   //   </div>
+  //   // );
+  // }
   for(let i = 0; i < friendids.length; i++) {
     array.push(
       <div className='left'>
@@ -148,6 +197,7 @@ function Dashboard()  {
       </div>
     );
   }
+
   return (
     
     <div className="screen-Background">
@@ -155,7 +205,7 @@ function Dashboard()  {
       <div className="screen-Content">
         
         <h1 >Dashboard</h1>
-        <img src={profile} alt="logo" class="center" />
+        <img src={profile} alt="logo" className="center" />
         <h1>{FName} {LName}</h1>
         <h2>{email}</h2>
         
@@ -169,6 +219,7 @@ function Dashboard()  {
         </Button>
         <h2>Friends</h2>
         <div className="frientlist">
+          {array}
           <ListGroup id="friendlist">
             <ListGroup.Item id="friendheader" hidden variant="success">Add a match below:</ListGroup.Item>
             <ListGroup.Item id="friend1" hidden variant="success" action href="#friend1">Friend 1</ListGroup.Item>

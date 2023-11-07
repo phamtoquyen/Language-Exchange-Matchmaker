@@ -16,13 +16,25 @@
     float: left;
 
   }
+
   .left {
     background:linear-gradient(135deg, rgb(19, 206, 209) 0%,rgb(165, 136, 74) 100%);
+  }
+
+  .leftOnline {
+    background:lightgreen;
     display: flex;
     margin-top: 20px;
     flex-direction: row;
     align-items: left;
   
+  }
+  .leftOffline {
+    background:lightpink;
+    display: flex;
+    margin-top: 20px;
+    flex-direction: row;
+    align-items: left;
   }
   .btn-chat{
     background:linear-gradient(135deg, rgba(34,193,195,1) 0%,     rgba(253,187,45,1) 100%);

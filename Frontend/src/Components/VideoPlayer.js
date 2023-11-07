@@ -7,13 +7,14 @@ export const VideoPlayer = ({ user }) => {
     user.videoTrack.play(ref.current);
   }, []);
 
-  return (
+  return ([
     <div>
       Uid: {user.uid}
       <div
         ref={ref}
-        style={{ width: '200px', height: '200px' }}
-      ></div>
-    </div>
+        style={{ width: '200px', height: '200px', 'white-space': 'pre-wrap' }}
+      >
+      </div>
+    </div>, <br/>]
   );
 };

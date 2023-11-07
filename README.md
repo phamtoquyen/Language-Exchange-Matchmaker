@@ -5,11 +5,14 @@
 ### Features
 * Preliminary Video Calling functionality
 * Matched Users can enter a virtual video conference room and communicate
+* Logout API and functionality
 ### Bug Fixes
 * Fixed an issue where unneccessary warning messages appeared
+* Separate video players on new lines
 ### Known Issues
 * Dynamic video Token generation not working
 * Webcam does not disconnect immidiately after leaving video chat
+* Log out won't work properly with phantom user that isn't logged in
 ## Version 1.3.0
 ### Features
 * Matching service to identify potential partners

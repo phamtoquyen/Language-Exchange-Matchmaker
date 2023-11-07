@@ -1,5 +1,7 @@
 import userService from '../Service/userService';
 
+let currUser = null
+
 let handleLogin = async (req, res) => {
     let email = req.body.email;
     let password = req.body.password;
@@ -12,6 +14,7 @@ let handleLogin = async (req, res) => {
     }
     // Call handleUserLogin to have the value of userData
     let userData = await userService.handleUserLogin(email, password)
+    currUser = userData
 
     return res.status(200).json({
          errorCode: userData.errCode,
@@ -36,6 +39,7 @@ let handleRegister = async (req, res) => {
     let save = true
     // Call handleUserLogin to have the value of userData
     let userData = await userService.handleUserRegister(firstName,lastName, email, password, save)
+    currUser = userData
     console.log(userData.id);
 
     return res.status(200).json({
@@ -127,6 +131,20 @@ let handleTranslator = async (req, res) => {
     });
 }
 
+let handleLogout = async (req, res) => {
+    //const userId = req.params.userId
+    console.log('curr: ' + currUser.id)
+    if (currUser) {
+        let userData = await userService.handleUserLogout(currUser.id)
+        return res.status(200).json({
+            errorCode: userData.errCode,
+            message: userData.errMessage,
+            id: userData.id,
+            user: userData.user? userData.user : {}
+       })
+    }
+}
+
 module.exports = {
     handleLogin: handleLogin,
     handleRegister: handleRegister,
@@ -134,5 +152,6 @@ module.exports = {
     handleGetUser : handleGetUser,
     handleTranslator : handleTranslator,
     handleGetProfile : handleGetProfile,
-    handleDataPopulation : handleDataPopulation
+    handleDataPopulation : handleDataPopulation,
+    handleLogout : handleLogout
 }
