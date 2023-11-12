@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import AgoraRTC from 'agora-rtc-sdk-ng';
 import { VideoPlayer } from './VideoPlayer';
+import Button from 'react-bootstrap/Button';
 
 const APP_ID = 'e7152fbb977b40a08d30ad8ae9a436c5';
-const TOKEN = '007eJxTYFAI6H609emJYIn2jT+DZ5uW8FrPUZU59nF164/ynKrLrk8UGFLNDU2N0pKSLM3Nk0wMEg0sUowNElMsElMtE02MzZJNZ5tapDYEMjJUslxlYmSAQBCfhSEnMy+bgQEAmnogGA==';
+const TOKEN = '007eJxTYBA0tyuqS57UL/NZ9/m+1fNl6h7NyLnG7N4xqTbAsO6hxWIFhlRzQ1OjtKQkS3PzJBODRAOLFGODxBSLxFTLRBNjs2TT1CSv1IZARoarPUaMjAwQCOKzMORk5mUzMAAAEpoeqQ==';
 const CHANNEL = 'link';
 
 const client = AgoraRTC.createClient({
@@ -32,6 +33,10 @@ export const VideoRoom = () => {
       previousUsers.filter((u) => u.uid !== user.uid)
     );
   };
+
+  const handleMute = async(e) => {
+    
+  }
 
   useEffect(() => {
     client.on('user-published', handleUserJoined);
@@ -84,6 +89,7 @@ export const VideoRoom = () => {
           <VideoPlayer key={user.uid} user={user} />
         ))}
       </div>
+      <Button className="btn-mute" onClick={handleMute} >mute</Button>
     </div>
   );
 };
