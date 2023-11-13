@@ -4,8 +4,11 @@ import { VideoPlayer } from './VideoPlayer';
 import Button from 'react-bootstrap/Button';
 
 const APP_ID = 'e7152fbb977b40a08d30ad8ae9a436c5';
-const TOKEN = '007eJxTYBA0tyuqS57UL/NZ9/m+1fNl6h7NyLnG7N4xqTbAsO6hxWIFhlRzQ1OjtKQkS3PzJBODRAOLFGODxBSLxFTLRBNjs2TT1CSv1IZARoarPUaMjAwQCOKzMORk5mUzMAAAEpoeqQ==';
+const TOKEN = '007eJxTYKjNdnJcMv16+iPzFceWH0zP5Hxg9vLR8QVeU6d3M1ay7vBXYEg1NzQ1SktKsjQ3TzIxSDSwSDE2SEyxSEy1TDQxNks2XecQmNoQyMgwOcSEiZEBAkF8FoaczLxsBgYAklsfxA==';
 const CHANNEL = 'link';
+
+var mute = false;
+var hidden = false;
 
 const client = AgoraRTC.createClient({
   mode: 'rtc',
@@ -24,7 +27,7 @@ export const VideoRoom = () => {
     }
 
     if (mediaType === 'audio') {
-      // user.audioTrack.play()
+      user.audioTrack.play()
     }
   };
 
@@ -35,7 +38,13 @@ export const VideoRoom = () => {
   };
 
   const handleMute = async(e) => {
-    
+    mute = !mute
+    await localTracks[0].setEnabled(!mute)
+  }
+
+  const hide = async(e) => {
+    hidden = !hidden
+    await localTracks[1].setEnabled(!hidden)
   }
 
   useEffect(() => {
@@ -89,7 +98,8 @@ export const VideoRoom = () => {
           <VideoPlayer key={user.uid} user={user} />
         ))}
       </div>
-      <Button className="btn-mute" onClick={handleMute} >mute</Button>
+      <Button className="btn-mute" onClick={handleMute} >Mute</Button>
+      <Button className="btn-hide" onClick={hide} >Hide Video</Button>
     </div>
   );
 };
