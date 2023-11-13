@@ -1,6 +1,15 @@
 # JIC-3200-LinguaLink | Language Exchange Matchmaker
 
 # Release Notes
+## Version 1.5.0
+### Features
+* Added mute function to video page
+* Added a hide video function to video page
+### Bug Fixes
+* Fixed an issue where audio would not connect with video
+### Known Issues
+* Webcam does not disconnect immidiately after leaving video chat
+* Log out won't work properly with phantom user that isn't logged in
 ## Version 1.4.0
 ### Features
 * Preliminary Video Calling functionality
