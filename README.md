@@ -8,8 +8,8 @@
 ### Bug Fixes
 * Fixed an issue where audio would not connect with video
 ### Known Issues
-* Webcam does not disconnect immidiately after leaving video chat
-* Log out won't work properly with phantom user that isn't logged in
+* #15 Webcam does not disconnect immidiately after leaving video chat
+* #16 Log out won't work properly with phantom user that isn't logged in
 ## Version 1.4.0
 ### Features
 * Preliminary Video Calling functionality
