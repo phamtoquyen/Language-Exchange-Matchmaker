@@ -8,7 +8,6 @@ const TOKEN = '007eJxTYCie932afPMO+f2ZS+unSuwJYjxp/ebKvwCDkKnTZ4hrsW5TYEg0MzczSU
 const CHANNEL = 'test';
 
 var mute = false;
-var hidden = false;
 
 const client = AgoraRTC.createClient({
   mode: 'rtc',
@@ -18,6 +17,8 @@ const client = AgoraRTC.createClient({
 export const VideoRoom = () => {
   const [users, setUsers] = useState([]);
   const [localTracks, setLocalTracks] = useState([]);
+
+  var [hidden, setHidden] = useState(false)
 
   const handleUserJoined = async (user, mediaType) => {
     await client.subscribe(user, mediaType);
@@ -44,6 +45,7 @@ export const VideoRoom = () => {
 
   const hide = async(e) => {
     hidden = !hidden
+    console.log(hidden)
     await localTracks[1].setEnabled(!hidden)
   }
 
@@ -95,11 +97,11 @@ export const VideoRoom = () => {
         }}
       >
         {users.map((user) => (
-          <VideoPlayer key={user.uid} user={user} />
+          !hidden ? <VideoPlayer key={user.uid} user={user} /> : null
         ))}
       </div>
       <Button className="btn-mute" onClick={handleMute} >Mute</Button>
-      <Button className="btn-hide" onClick={hide} >Hide Video</Button>
+      <Button className="btn-hide" onClick={()=>setHidden(!hidden)} >Hide Video</Button>
     </div>
   );
 };
