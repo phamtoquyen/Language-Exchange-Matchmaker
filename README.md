@@ -5,6 +5,7 @@
 ### Features
 * Added mute function to video page
 * Added a hide video function to video page
+* Added call button to initiate 1-on-1 call
 ### Bug Fixes
 * Fixed an issue where audio would not connect with video
 ### Known Issues
