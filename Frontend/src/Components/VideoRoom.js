@@ -3,9 +3,9 @@ import AgoraRTC from 'agora-rtc-sdk-ng';
 import { VideoPlayer } from './VideoPlayer';
 import Button from 'react-bootstrap/Button';
 
-const APP_ID = 'e7152fbb977b40a08d30ad8ae9a436c5';
-const TOKEN = '007eJxTYKjNdnJcMv16+iPzFceWH0zP5Hxg9vLR8QVeU6d3M1ay7vBXYEg1NzQ1SktKsjQ3TzIxSDSwSDE2SEyxSEy1TDQxNks2XecQmNoQyMgwOcSEiZEBAkF8FoaczLxsBgYAklsfxA==';
-const CHANNEL = 'link';
+const APP_ID = 'a6764cf8e2e146d5a2ed71c111c01b9a';
+const TOKEN = '007eJxTYCie932afPMO+f2ZS+unSuwJYjxp/ebKvwCDkKnTZ4hrsW5TYEg0MzczSU6zSDVKNTQxSzFNNEpNMTdMNjQ0TDYwTLJMNLofldoQyMigzLifkZEBAkF8FoaS1OISBgYAQrceuQ==';
+const CHANNEL = 'test';
 
 var mute = false;
 var hidden = false;
