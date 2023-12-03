@@ -1,13 +1,57 @@
-# JIA-2113---Language-Exchange-Matchmaker
+# JIC-3200-LinguaLink | Language Exchange Matchmaker
 
 # Release Notes
-## Version 1.0.0
+## Version 1.5.0
+### Features
+* Added mute function to video page
+* Added a hide video function to video page
+* Added call button to initiate 1-on-1 call
+### Bug Fixes
+* Fixed an issue where audio would not connect with video
+### Known Issues
+* \#15 Webcam does not disconnect immidiately after leaving video chat
+* \#16 Log out won't work properly with phantom user that isn't logged in
+## Version 1.4.0
+### Features
+* Preliminary Video Calling functionality
+* Matched Users can enter a virtual video conference room and communicate
+* Logout API and functionality
+### Bug Fixes
+* Fixed an issue where unneccessary warning messages appeared
+* Separate video players on new lines
+### Known Issues
+* Dynamic video Token generation not working
+* Webcam does not disconnect immidiately after leaving video chat
+* Log out won't work properly with phantom user that isn't logged in
+## Version 1.3.0
+### Features
+* Matching service to identify potential partners
+* Backend Dummy Data generation for testing
+* Expanded user profile options for language proficiency, hobby, and profession
+### Bug Fixes
+* Added action to 'find friend' button on dashboard
+* Fixed an issue where user profile would not be instantiated with an id key
+### Known Issues
+* Matching service sometime returns a duplicate user
+## Version 1.2.0
+### Features
+* English to Korean translator page
+* Backend dictionary/translation storage
+* Cleaned up and improved README's documentation and installation guiide
+### Bug Fixes
+* Database connection properly established for newly cloned project environments
+* Updated translator page to align with app's standard styling
+### Known Issues
+* 'Find Friend' feature on home page does not properly interact with backend
+* Chat screen is empty with no meaningful navigation options
+## Version 1.1.0
 ### Features
 * Registering an account and logging in
 * Creating a personalized profile
 * Matching with individuals that match your needs
 * Able to view friends on dashboard page
-* Chatting with friends 
+* Chatting with friends
+* Virtual keyboard
 
 ### Bug Fixes
 * RESTful API created for the messageModel
@@ -20,78 +64,36 @@
 * Window sizing issue depending on the size of the email
 
 
-# Install Guide Language Exchange MatchMaker 1.0 
-## PRE-REQUISITES 
-* You must have an IDE like visual studio installed and SQL workbench configured before proceeding. See 
+# Install Guide
+## PREREQUISITES 
+You may want to have an IDE like Visual Studio Code and a MySQL GUI installed.
 
-https://visualstudio.microsoft.com/downloads/ 
+Requirements:
+* Git
+* Node.js / Node Package Manager (npm)
+## DOWNLOAD
 
-https://dev.mysql.com/downloads/workbench/ 
-## DOWNLOAD 
-* https://github.com/phamtoquyen/JIA-2113---Language-Exchange-Matchmaker.git 
-
-Dowload zip file from there 
+Clone this repository locally.
 ## DEPENDENCIES 
-open the file in VS/ Intellij and terminal (we can install all the dependencies with ‘npm install’ command in terminal) 
-
-Backend dependencies: 
-  * "@babel/core": "7.15.5",
-  *  "@babel/node": "7.15.4",
-  *  "@babel/preset-env": "7.15.6",
-  *  "app-root-path": "3.0.0",
-  *  "bcryptjs": "^2.4.3",
-  *  "body-parser": "1.19.0",
-  *  "cors": "^2.8.5",
-  *  "dotenv": "10.0.0",
-  *  "ejs": "^3.1.6",
-  *  "express": "4.17.1",
-  *  "multer": "1.4.3",
-  *  "mysql2": "2.3.0",
-  *  "nodemon": "^2.0.20",
-  *  "sequelize": "^6.19.0"
+Open the project directory in your terminal.
 
 For Backend dependencies (terminal commands): 
-* cd Backend--JIA-2113---Language-Exchange-Matchmaker 
-* npm install 
 
-
-Frontend dependencies: 
-"@iconscout/react-unicons": "^1.1.6",
-  *  "@testing-library/jest-dom": "^5.16.5",
-  *  "@testing-library/react": "^13.4.0",
-  *  "@testing-library/user-event": "^13.5.0",
-  *  "axios": "^0.27.2",
-  *  "bootstrap": "^5.2.1",
-  *  "connected-react-router": "^6.9.3",
-  *  "react": "^18.2.0",
-  *  "react-bootstrap": "^2.5.0",
-  *  "react-dom": "^18.2.0",
-  *  "react-icons": "^4.6.0",
-  *  "react-redux": "^8.0.5",
-  *  "react-router-dom": "^6.4.1",
-  *  "react-script": "^2.0.5",
-  *  "react-scripts": "^5.0.1",
-  *  "react-select": "^5.4.0",
-  *  "react-toastify": "^9.0.8",
-  *  "redux": "^4.2.0",
-  *  "redux-thunk": "^2.4.2",
-  *  "sass": "^1.55.0",
-  *  "save": "^2.5.0",
-  *  "socket.io-client": "^4.5.4",
-  *  "styled-components": "^5.3.6",
-  *  "timeago.js": "^4.0.2",
-  *  "web-vitals": "^2.1.4"
-
+    cd Backend
+    npm install
 
 For Frontend dependecies (terminal commands): 
 
-* cd Frontend_JIA 2113 - Language Exchange Matchmaker 
-* npm install  
+    cd Frontend 
+    npm install --legacy-peer-deps
+    npm install translate --legacy-peer-deps
 
-To migrate the database 
-* cd Backend--JIA-2113---Language-Exchange-Matchmaker/src 
-* npx sequelize-cli db:migrate 
- 
+To migrate the database:
+
+    cd Backend/src 
+    npx sequelize-cli db:migrate
+*Note that you will need to remove your database's password and create a table named languageexchangematchmaker in order to get things working.* 
+
 ## BUILD 
 No builds are necessary for this app.
 ## INSTALLATION 
@@ -99,17 +101,17 @@ No additional files need to be added
 
 ## RUNNING APPLICATION
 Backend
-* cd Backend--JIA-2113---Language-Exchange-Matchmaker 
-* npm start
+
+    cd Backend 
+    npm start
 
 Frontend
-* cd Frontend_JIA 2113 - Language Exchange Matchmaker 
-* npm start
+
+    cd Frontend
+    npm start
 
 # Tutorial Resources: 
 
 * https://sequelize.org/docs/v6/other-topics/migrations/ 
 * https://reactjs.org/tutorial/tutorial.html 
 * https://www.bezkoder.com/react-node-express-mysql/ 
-
- 
